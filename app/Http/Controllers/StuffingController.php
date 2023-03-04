@@ -16,6 +16,10 @@ use App\Models\vDataHeader;
 use App\Models\Subform;
 use App\Models\ImageStuffing;
 use App\Models\activity_log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\notifikasi;
+use App\Models\tbrpegawai;
+use Illuminate\Validation\Rule;
 
 class StuffingController extends Controller
 {
@@ -61,6 +65,13 @@ class StuffingController extends Controller
                 ->where("images_stuffing.id_ppk", $image->id_ppk)
                 ->get();
         }
+        // $pegawai = DB::table('tb_r_pegawai')
+        //     ->select('nama','email')
+        //     ->get();
+        $pegawai = DB::connection('sqlsrv2')->table('tb_r_pegawai')
+            ->select('nama', 'email')
+            ->get();
+            
         return view('admin.stuffing', [
             "title" => "Stuffing",
             // "ppks" => $ppkModel->where("id_trader", Auth::user()->id_trader)->get(),
@@ -68,6 +79,7 @@ class StuffingController extends Controller
             "trader" => $trader,
             "master" => $master,
             "tipe"=> $tipe_data,
+            "pegawai"=> $pegawai
         ]);
     }
 
@@ -241,6 +253,8 @@ class StuffingController extends Controller
         $messages = [
             'required' => ':attribute wajib diisi ',
             'url_periksa.required' => 'Link meeting wajib diisi ',
+            'petugas.required'=> 'Petugas wajib diisi!!',
+            'petugas.not_in' => 'Petugas wajib diisi!!',
             'min' => ':attribute harus diisi minimal :min karakter !!!',
             'max' => ':attribute harus diisi maksimal :max karakter !!!',
             'numeric' => ':attribute harus diisi angka !!!',
@@ -249,6 +263,7 @@ class StuffingController extends Controller
 
         $this->validate($request, [
             "url_periksa" => 'required',
+            "petugas" => ['required', Rule::notIn(['Pilih Petugas'])]
         ], $messages);
 
         Ppk::where('id_ppk', $id_ppk)->update([
@@ -289,8 +304,12 @@ class StuffingController extends Controller
             DB::commit();
 
         }
-
-        return redirect('/admin/stuffing')->with('success', 'Jadwal telah disetujui!');
+        session([
+            'notif_noppk' => $id_ppk,
+            'petugas' => $request->petugas
+        ]);
+        return redirect('/notifikasi');
+        //return redirect('/admin/stuffing')->with('success', 'Jadwal telah disetujui!');
     }
     public function revisi(Request $request, $id_ppk)
     {
@@ -298,15 +317,20 @@ class StuffingController extends Controller
             'required' => ':attribute wajib diisi ',
             'url_periksa.required' => 'Link meeting wajib diisi ',
             'jadwal_periksa.required'=> 'Jadwal wajib diisi!!',
+            'petugas.required'=> 'Petugas wajib diisi!!',
+            'petugas.not_in' => 'Petugas wajib diisi!!',
             'min' => ':attribute harus diisi minimal :min karakter !!!',
             'max' => ':attribute harus diisi maksimal :max karakter !!!',
             'numeric' => ':attribute harus diisi angka !!!',
             'email' => ':attribute harus diisi dalam bentuk email !!!',
         ];
 
+        
+
         $this->validate($request, [
             "url_periksa" => 'required',
-            "jadwal_periksa" => 'required'
+            "jadwal_periksa" => 'required',
+            "petugas" => ['required', Rule::notIn(['Pilih Petugas'])]
         ], $messages);
 
         Ppk::where('id_ppk', $id_ppk)->update([
@@ -348,8 +372,13 @@ class StuffingController extends Controller
             DB::commit();
 
         }
-
-        return redirect('/admin/stuffing')->with('success', 'Jadwal telah direvisi!');
+        session([
+            'notif_noppk' => $id_ppk,
+            'petugas' => $request->petugas
+        ]);
+        return redirect('/notifikasi');
+        // Mail::to('rakekw28@gmail.com')->send(new notifikasi);
+        // return redirect('/admin/stuffing')->with('success', 'Jadwal telah direvisi!');
     }
     public function tolak(Request $request, $id_ppk)
     {

@@ -80,6 +80,7 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::post('/admin/stuffing/form/{id_ppk}/storeSubform', [App\Http\Controllers\FormController::class, 'storeSubform'])->name('admin.storeform_stuffing');
         Route::post('/admin/stuffing/{id_ppk}/izin', [App\Http\Controllers\StuffingController::class, 'izin'])->name('admin.izinstuffing');
         Route::get('/admin/stuffing/detail/{id_ppk}', [App\Http\Controllers\StuffingController::class, 'detail'])->name('admin.detail');
+        Route::get('/notifikasi', [App\Http\Controllers\NotifikasiController::class, 'index']);
 
         // Kategori
         Route::get('/admin/kategori', [App\Http\Controllers\KategoriController::class, 'index'])->name('admin.kategori_dokumen');
@@ -135,6 +136,7 @@ Route::group(['middleware' => 'revalidate'], function () {
     Route::get('/loginjpp', [\App\Http\Controllers\LoginJPPController::class, 'formLogin'])->name('loginjpp');
     Route::post('/loginjpp', [\App\Http\Controllers\LoginJPPController::class, 'login'])->name('loginjpp');
     Route::get('/logoutjpp', [\App\Http\Controllers\LoginJPPController::class, 'logout'])->name('logoutjpp');
+    
 
     
 });

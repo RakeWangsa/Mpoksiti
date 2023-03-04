@@ -165,6 +165,13 @@
                                               <div class="form-group">
                                                 <label for="url_periksa" style="font-weight:500; color:#2E2A61; font-size: 18px;">Link Meeting</label>
                                                 <input type="text" id="url_periksa" value="{{ old('url_periksa') }}" class="form-control" placeholder="link meeting" name="url_periksa">
+                                                <label for="petugas" style="font-weight:500; color:#2E2A61; font-size: 18px;" class='mt-3'>Petugas</label>
+                                                <select class="form-control" aria-label="Default select example" name="petugas">
+                                                  <option selected>Pilih Petugas</option>
+                                                  @foreach ($pegawai as $p)
+                                                  <option value="{{ $p->nama }}">{{ $p->nama }}</option>
+                                                  @endforeach
+                                                </select>
                                               </div>
                                             </div>
                                             <div class="col-12 d-flex justify-content-end">
@@ -228,6 +235,13 @@
                                                 <input type="text" id="url_periksa" value="{{ old('url_periksa') }}" class="form-control" placeholder="link meeting" name="url_periksa">
                                                 <label for="jadwal_periksa" style="font-weight:500; color:#2E2A61; font-size: 18px;" class='mt-3'>Jadwal</label>
                                                 <input type="datetime-local" id="jadwal_periksa" value="{{ date('Y-m-d H:i A', strtotime($ppk->jadwal_periksa))}}" class="form-control" placeholder="Jadwal" name="jadwal_periksa">
+                                                <label for="petugas" style="font-weight:500; color:#2E2A61; font-size: 18px;" class='mt-3'>Petugas</label>
+                                                <select class="form-control" aria-label="Default select example" name="petugas">
+                                                  <option selected>Pilih Petugas</option>
+                                                  @foreach ($pegawai as $p)
+                                                  <option value="{{ $p->nama }}">{{ $p->nama }}</option>
+                                                  @endforeach
+                                                </select>
                                               </div>
                                             </div>
                                             <div class="col-12 d-flex justify-content-end">
