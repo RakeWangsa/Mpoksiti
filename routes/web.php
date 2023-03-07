@@ -96,7 +96,9 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::post('/admin/subform/EditSubform/{id_masterSubform}/update', [App\Http\Controllers\SubformController::class, 'updateSubform'])->name('admin.updateSubform');
         
         //Organoleptik
-        Route::get('/admin/organoleptik', [App\Http\Controllers\OrganoleptikController::class, 'index'])->name('admin.organoleptik');
+        Route::get('/admin/organoleptik/', [App\Http\Controllers\OrganoleptikController::class, 'index'])->name('admin.organoleptik');
+        Route::get('/admin/organoleptik/{id_ppk}', [App\Http\Controllers\OrganoleptikController::class, 'organoleptik'])->name('admin.organoleptiks');
+        Route::get('/admin/organoleptik/{id_ppk}/submit', [App\Http\Controllers\OrganoleptikController::class, 'submit'])->name('admin.submitOrganoleptik');
 
         //Pemeriksaan Klinis
         Route::get('/admin/pemeriksaan_klinis', [App\Http\Controllers\AdminPKController::class, 'index'])->name('admin.PK-pemeriksaan_klinis');
