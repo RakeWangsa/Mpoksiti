@@ -136,7 +136,7 @@ class OrganoleptikController extends Controller
         //     "id_ppk"=> $id_ppk,
         //     "data"=>$request->A91
         // ]);
-        return redirect('/admin/organoleptik')->with('berhasilSimpan','Data berhasil disimpan');
+        return redirect('/admin/organoleptik/'.$id_ppk)->with('berhasilSimpan','Data berhasil disimpan');
     }
 
     public function reset(Request $request){
@@ -152,6 +152,6 @@ class OrganoleptikController extends Controller
             organoleptik::where('id_ppk', $id_ppk)->delete();
 
         }
-        return redirect('/admin/organoleptik/'.$id_ppk);
+        return redirect('/admin/organoleptik/'.$id_ppk)->with('berhasilSimpan','Data berhasil direset');;
     }
 }

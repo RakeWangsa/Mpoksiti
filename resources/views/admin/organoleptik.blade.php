@@ -117,7 +117,7 @@
         @endif
 
         @if (isset($header))
-        <div class="text-right"><a class="btn btn-danger mt-4 mr-2" href="{{route('admin.resetOrganoleptik', ['id_ppk' => $header[0]->id_ppk])}}">Reset</a><button type="submit" class="btn btn-secondary mt-4" style="background-color:#104E8B">Submit</button></div>
+        <div class="text-right"><a class="btn btn-danger mt-4 mr-2" href="{{route('admin.resetOrganoleptik', ['id_ppk' => $header[0]->id_ppk])}}" id="reset-btn">Reset</a><button type="submit" class="btn btn-secondary mt-4" style="background-color:#104E8B">Submit</button></div>
         @else
         <div class="text-right"><button type="button" class="btn btn-danger mt-4 mr-2" data-toggle="modal" data-target="#exampleModal">Reset</button><button type="button" class="btn btn-secondary mt-4" data-toggle="modal" data-target="#exampleModal" style="background-color:#104E8B">Submit</button></div>
 
@@ -147,6 +147,15 @@
     </div>
   </div>
 </main>
+<script>
+  document.getElementById("reset-btn").addEventListener("click", function(event){
+      event.preventDefault(); // untuk mencegah redirect langsung saat klik link
+      if(confirm("Apakah Anda yakin ingin mereset tabel ini?")){
+          window.location.href = this.href; // redirect ke halaman reset jika dikonfirmasi
+      }
+  });
+</script>
+
 @endsection
 
 @push('scripts')
