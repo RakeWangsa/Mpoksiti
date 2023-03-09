@@ -26,17 +26,35 @@
   </div>
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2" style="font-weight:bold; color:#2E2A61;">Form Organoleptik</h1>
-    <div class="dropdown">
-      <a class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Pilih No PPK
-      </a>
     
-      <ul class="dropdown-menu">
-        @foreach($list as $ppk)
-        <li><a class="dropdown-item" href="{{route('admin.organoleptiks', ['id_ppk' => $ppk->id_ppk])}}">{{ $ppk->no_ppk }} - {{ $ppk->nm_trader }}</a></li>
-        @endforeach
-      </ul>
+    <div class="d-flex">
+      <div class="dropdown me-3 mx-2">
+        <a class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Pilih No PPK
+        </a>
+    
+        <ul class="dropdown-menu">
+          @foreach($list as $ppk)
+          <li><a class="dropdown-item" href="{{route('admin.organoleptiks', ['id_ppk' => $ppk->id_ppk])}}">{{ $ppk->no_ppk }} - {{ $ppk->nm_trader }}</a></li>
+          @endforeach
+        </ul>
+      </div>
+    
+      <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Pilih Jenis
+        </a>
+    
+        <ul class="dropdown-menu">
+          @foreach($list as $ppk)
+          <li><a class="dropdown-item" href="{{route('admin.organoleptiks', ['id_ppk' => $ppk->id_ppk])}}">{{ $ppk->no_ppk }} - {{ $ppk->nm_trader }}</a></li>
+          @endforeach
+        </ul>
+      </div>
     </div>
+    
+
+    
   </div>
   <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
     <div class="card shadow w-100 responsive" style="margin: top 10px;">
@@ -130,7 +148,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                Pilih No PPK terlebih dahulu!
+                Pilih No PPK dan jenis terlebih dahulu!
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
