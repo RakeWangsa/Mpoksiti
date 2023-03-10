@@ -34,9 +34,15 @@
         </a>
     
         <ul class="dropdown-menu">
-          @foreach($list as $ppk)
-          <li><a class="dropdown-item" href="{{route('admin.organoleptiks', ['id_ppk' => $ppk->id_ppk])}}">{{ $ppk->no_ppk }} - {{ $ppk->nm_trader }}</a></li>
-          @endforeach
+          @if(!isset($jenis))
+            @foreach($list as $ppk)
+            <li><a class="dropdown-item" href="{{route('admin.organoleptiks', ['id_ppk' => $ppk->id_ppk])}}">{{ $ppk->no_ppk }} - {{ $ppk->nm_trader }}</a></li>
+            @endforeach
+          @else
+            @foreach($list as $ppk)
+            <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $ppk->id_ppk,'jenis'=>$jenis])}}">{{ $ppk->no_ppk }} - {{ $ppk->nm_trader }}</a></li>
+            @endforeach
+          @endif
         </ul>
       </div>
 
@@ -159,21 +165,21 @@
         </tbody></table>
         @else
         <table class="tableizer-table">
-          <thead><tr class="tableizer-firstrow"><th class="text-center">Spesifikasi</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>Nilai</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr></thead><tbody>
-           <tr><td>&nbsp;</td><td>&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
-           <tr><td>1 Kenampakan</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-           <tr><td>a Daging dada</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>  </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-           <tr><td>Bentuk utuh, warna daging susu sangat cerah, bersih, sangat cemerlang, sangat menarik.</td><td>9</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A9{{$i}}"></td>@endfor</tr>
-           <tr><td>Bentuk utuh, sedikit ada serpihan daging, warna daging putih susu cerah, sedikit sekali warna kekuningan, bersih, cemerlang, menarik,</td><td>7</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A7{{$i}}"></td>@endfor</tr>
-         <tr><td>Tidak utuh, banyak serpihan daging, warna daging putih susu kusam, banyak warna kekuningan, tidak cemerlang, tidak menarik.</td><td>5</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A5{{$i}}"></td>@endfor</tr>
-         <tr><td>Tidak utuh, banyak serpihan daging, warna daging sangat kusam, banyak warna kekuningan, tidak cemerlang, berlendir, tidak menarik.</td><td>3</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A3{{$i}}"></td>@endfor</tr>
-         <tr><td>Tidak utuh, banyak serpihan daging, warna daging sangat kusam, banyak warna kekuningan, lendir tebal, tidak menarik.</td><td>1</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A1{{$i}}"></td>@endfor</tr>
-         <tr><td>b Daging paha, capit dan kaki</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-         <tr><td>Warna daging kecoklatan sangat cerah, serpihan rata, bersih, sangat cemerlang, sangat menarik.</td><td>9</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B9{{$i}}"></td>@endfor</tr>
-         <tr><td>Warna daging kecoklatan cerah, serpihan rata, bersih, cemerlang, menarik.</td><td>7</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B7{{$i}}"></td>@endfor</tr>
-         <tr><td>Warna daging kecoklatan kusam, serpihan tidak rata, sedikit lendir, kurang cemerlang, tidak menarik.</td><td>5</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B5{{$i}}"></td>@endfor</tr>
-         <tr><td>Warna  daging  kecoklatan  sangat  kusam,  serpihan tidak rata, lendir agak banyak, tidak cemerlang, tidak menarik.</td><td>3</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B3{{$i}}"></td>@endfor</tr>
-         <tr><td>Warna daging kecoklatan sangat kusam, serpihan tidak rata, lendir tebal, tidak cemerlang, tidak menarik.</td><td>1</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B1{{$i}}"></td>@endfor</tr>
+          <thead><tr class="tableizer-firstrow"><th class="text-center">Spesifikasi</th><th>Nilai</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody>
+           <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+           <tr><td>1 Kenampakan</td>@for ($i = 1; $i <= 25; $i++)<td></td>@endfor</tr>
+           <tr><td>a Daging dada</td>@for ($i = 1; $i <= 25; $i++)<td></td>@endfor</tr>
+           <tr><td>Bentuk utuh, warna daging susu sangat cerah, bersih, sangat cemerlang, sangat menarik.</td><td class="text-center">9</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A9{{$i}}"></td>@endfor</tr>
+           <tr><td>Bentuk utuh, sedikit ada serpihan daging, warna daging putih susu cerah, sedikit sekali warna kekuningan, bersih, cemerlang, menarik,</td><td class="text-center">7</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A7{{$i}}"></td>@endfor</tr>
+         <tr><td>Tidak utuh, banyak serpihan daging, warna daging putih susu kusam, banyak warna kekuningan, tidak cemerlang, tidak menarik.</td><td class="text-center">5</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A5{{$i}}"></td>@endfor</tr>
+         <tr><td>Tidak utuh, banyak serpihan daging, warna daging sangat kusam, banyak warna kekuningan, tidak cemerlang, berlendir, tidak menarik.</td><td class="text-center">3</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A3{{$i}}"></td>@endfor</tr>
+         <tr><td>Tidak utuh, banyak serpihan daging, warna daging sangat kusam, banyak warna kekuningan, lendir tebal, tidak menarik.</td><td class="text-center">1</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A1{{$i}}"></td>@endfor</tr>
+         <tr><td>b Daging paha, capit dan kaki</td>@for ($i = 1; $i <= 25; $i++)<td></td>@endfor</tr>
+         <tr><td>Warna daging kecoklatan sangat cerah, serpihan rata, bersih, sangat cemerlang, sangat menarik.</td><td class="text-center">9</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B9{{$i}}"></td>@endfor</tr>
+         <tr><td>Warna daging kecoklatan cerah, serpihan rata, bersih, cemerlang, menarik.</td><td class="text-center">7</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B7{{$i}}"></td>@endfor</tr>
+         <tr><td>Warna daging kecoklatan kusam, serpihan tidak rata, sedikit lendir, kurang cemerlang, tidak menarik.</td><td class="text-center">5</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B5{{$i}}"></td>@endfor</tr>
+         <tr><td>Warna  daging  kecoklatan  sangat  kusam,  serpihan tidak rata, lendir agak banyak, tidak cemerlang, tidak menarik.</td><td class="text-center">3</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B3{{$i}}"></td>@endfor</tr>
+         <tr><td>Warna daging kecoklatan sangat kusam, serpihan tidak rata, lendir tebal, tidak cemerlang, tidak menarik.</td><td class="text-center">1</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B1{{$i}}"></td>@endfor</tr>
           </tbody></table>
         @endif
         <p class="mt-2">Petugas Karantina,</p>
