@@ -98,8 +98,9 @@ Route::group(['middleware' => 'revalidate'], function () {
         //Organoleptik
         Route::get('/admin/organoleptik/', [App\Http\Controllers\OrganoleptikController::class, 'index'])->name('admin.organoleptik');
         Route::get('/admin/organoleptik/{id_ppk}', [App\Http\Controllers\OrganoleptikController::class, 'organoleptik'])->name('admin.organoleptiks');
-        Route::get('/admin/organoleptik/{id_ppk}/submit', [App\Http\Controllers\OrganoleptikController::class, 'submit'])->name('admin.submitOrganoleptik');
-        Route::get('/admin/organoleptik/{id_ppk}/reset', [App\Http\Controllers\OrganoleptikController::class, 'reset'])->name('admin.resetOrganoleptik');
+        Route::get('/admin/organoleptik/{id_ppk}/{jenis}', [App\Http\Controllers\OrganoleptikController::class, 'NilaiOrganoleptik'])->name('admin.NilaiOrganoleptik');
+        Route::get('/admin/organoleptik/{id_ppk}/{jenis}/submit', [App\Http\Controllers\OrganoleptikController::class, 'submit'])->name('admin.submitOrganoleptik');
+        Route::get('/admin/organoleptik/{id_ppk}/{jenis}/reset', [App\Http\Controllers\OrganoleptikController::class, 'reset'])->name('admin.resetOrganoleptik');
 
         //Pemeriksaan Klinis
         Route::get('/admin/pemeriksaan_klinis', [App\Http\Controllers\AdminPKController::class, 'index'])->name('admin.PK-pemeriksaan_klinis');

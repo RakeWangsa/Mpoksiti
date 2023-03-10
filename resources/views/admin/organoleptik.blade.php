@@ -39,18 +39,65 @@
           @endforeach
         </ul>
       </div>
-    
+
+      @if (isset($header))
       <div class="dropdown">
         <a class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Pilih Jenis
         </a>
     
+        
         <ul class="dropdown-menu">
-          @foreach($list as $ppk)
-          <li><a class="dropdown-item" href="{{route('admin.organoleptiks', ['id_ppk' => $ppk->id_ppk])}}">{{ $ppk->no_ppk }} - {{ $ppk->nm_trader }}</a></li>
-          @endforeach
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Daging Rajungan Pasteu'])}}">Daging Rajungan Pasteu</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Paha Kodok Beku'])}}">Paha Kodok Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Scallop Beku'])}}">Scallop Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Daging Kerang Beku'])}}">Daging Kerang Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Sotong Beku'])}}">Sotong Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Ubur Ubur'])}}">Ubur Ubur</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Cumi Beku 2'])}}">Cumi Beku 2</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Gurita Beku'])}}">Gurita Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Ikan Beku'])}}">Ikan Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Ikan Segar'])}}">Ikan Segar</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Steak Ikan Beku'])}}">Steak Ikan Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Udang Masak Beku'])}}">Udang Masak Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Udang Utuh Block Beku'])}}">Udang Utuh Block Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Udang Kupas Mentah Beku'])}}">Udang Kupas Mentah Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Udang Lapis Tepung'])}}">Udang Lapis Tepung</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Ikan Asin Kering'])}}">Ikan Asin Kering</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Ikan Beku 2'])}}">Ikan Beku 2</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Udang Beku 2'])}}">Udang Beku 2</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Kerupuk'])}}">Kerupuk</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Ikan Kering'])}}">Ikan Kering</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Sur'])}}">Sur</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Agar Powder'])}}">Agar Powder</a></li>
         </ul>
       </div>
+      @else
+      <div class="dropdown">
+        <button type="button" class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" data-toggle="modal" data-target="#exampleModal">Pilih Jenis</button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Pilih No PPK terlebih dahulu!
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      @endif
+
     </div>
     
 
@@ -64,7 +111,7 @@
             <h6>Nama Perusahaan : {{ $header[0]->nm_trader }} </h6>
             <h6>Tanggal : {{ $header[0]->tgl_ppk }}</h6>
             <h6>No PPK/No Pengajuan : {{ $header[0]->no_ppk }}</h6>
-            <h6>Jenis Contoh : </h6>
+            <h6>Jenis Contoh : @if(isset($jenis)){{ $jenis }}@endif</h6>
           @else
             <h6>Nama Perusahaan : </h6>
             <h6>Tanggal : </h6>
@@ -89,11 +136,9 @@
                 font-weight: bold;
             }
         </style>
-        {{-- <form method="GET" action="{{route('submitOrganoleptik', ['no_ppk' => $header[0]->no_ppk])}}"> --}}
-        @if (isset($header))
-        <form method="GET" action="{{route('admin.submitOrganoleptik', ['id_ppk' => $header[0]->id_ppk])}}"> 
-        @endif
-
+        @if(isset($jenis))
+        <form method="GET" action="{{route('admin.submitOrganoleptik', ['id_ppk' => $header[0]->id_ppk,'jenis'=>$jenis])}}"> 
+        @if($jenis=='Daging Rajungan Pasteu')
         @if (isset($check))
         <table class="tableizer-table">
         <thead><tr class="tableizer-firstrow"><th class="text-center">Spesifikasi</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>Nilai</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr></thead><tbody>
@@ -131,33 +176,19 @@
          <tr><td>Warna daging kecoklatan sangat kusam, serpihan tidak rata, lendir tebal, tidak cemerlang, tidak menarik.</td><td>1</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B1{{$i}}"></td>@endfor</tr>
           </tbody></table>
         @endif
-
-        @if (isset($header))
-        <div class="text-right"><a class="btn btn-danger mt-4 mr-2" href="{{route('admin.resetOrganoleptik', ['id_ppk' => $header[0]->id_ppk])}}" id="reset-btn">Reset</a><button type="submit" class="btn btn-secondary mt-4" style="background-color:#104E8B">Submit</button></div>
-        @else
-        <div class="text-right"><button type="button" class="btn btn-danger mt-4 mr-2" data-toggle="modal" data-target="#exampleModal">Reset</button><button type="button" class="btn btn-secondary mt-4" data-toggle="modal" data-target="#exampleModal" style="background-color:#104E8B">Submit</button></div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                Pilih No PPK dan jenis terlebih dahulu!
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
+        <p class="mt-2">Petugas Karantina,</p>
+        <input type="text">
+        <div class="text-right">
+          <a class="btn btn-danger mt-4 mr-2" href="{{route('admin.resetOrganoleptik', ['id_ppk' => $header[0]->id_ppk,'jenis'=>'Daging Rajungan Pasteu'])}}" id="reset-btn">Reset</a>
+          <button type="submit" class="btn btn-secondary mt-4" style="background-color:#104E8B">Save</button>
+          <a class="btn btn-secondary mt-4 ml-2" href="">Print</a>
         </div>
-        @endif
       </form>
+
+      @endif
+      @endif
+      
+
 
       </div>
     </div>
