@@ -7,7 +7,7 @@
 
 @section('content')
 <script>
-  document.title = "Stuffing Virtual - Mpok Siti"
+  document.title = "Organoleptik - Mpok Siti"
 </script>
 @if(session()->has('berhasilSimpan'))
     <script>
@@ -214,12 +214,12 @@
 
 
         @endif
-        <p class="mt-2">Petugas Karantina,</p>
+        <label class="mt-2">Petugas Karantina,</label>
         <input type="text" name="petugas" @if(isset($check))value="{{$check[0]->petugas}}" @endif required>
         <div class="text-left">
           <a class="btn btn-danger mt-4 mr-2" href="{{route('admin.resetOrganoleptik', ['id_ppk' => $header[0]->id_ppk,'jenis'=>$jenis])}}" id="reset-btn">Reset</a>
           <button type="submit" class="btn btn-secondary mt-4" style="background-color:#104E8B">Save</button>
-          <a class="btn btn-secondary mt-4 ml-2" href="">Print</a>
+          <a class="btn btn-secondary mt-4 ml-2" href="{{route('admin.printOrganoleptik', ['id_ppk' => $header[0]->id_ppk,'jenis'=>$jenis])}}">Print</a>
         </div>
       </form>
 
