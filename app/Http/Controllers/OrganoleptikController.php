@@ -101,6 +101,7 @@ class OrganoleptikController extends Controller
 
         if(count($ada) > 0){
             organoleptik::where('id_ppk', $id_ppk)->where('jenis', $jenis)->update([
+                "petugas"=>$request->petugas,
                 "A91"=>$request->A91, "A92"=>$request->A92, "A93"=>$request->A93, "A94"=>$request->A94, "A95"=>$request->A95, "A96"=>$request->A96, "A97"=>$request->A97, "A98"=>$request->A98, "A99"=>$request->A99, "A910"=>$request->A910, "A911"=>$request->A911, "A912"=>$request->A912, "A913"=>$request->A913, "A914"=>$request->A914, "A915"=>$request->A915, "A916"=>$request->A916, "A917"=>$request->A917, "A918"=>$request->A918, "A919"=>$request->A919, "A920"=>$request->A920, "A921"=>$request->A921, "A922"=>$request->A922, "A923"=>$request->A923, "A924"=>$request->A924,
                 "A81"=>$request->A81, "A82"=>$request->A82, "A83"=>$request->A83, "A84"=>$request->A84, "A85"=>$request->A85, "A86"=>$request->A86, "A87"=>$request->A87, "A88"=>$request->A88, "A89"=>$request->A89, "A810"=>$request->A810, "A811"=>$request->A811, "A812"=>$request->A812, "A813"=>$request->A813, "A814"=>$request->A814, "A815"=>$request->A815, "A816"=>$request->A816, "A817"=>$request->A817, "A818"=>$request->A818, "A819"=>$request->A819, "A820"=>$request->A820, "A821"=>$request->A821, "A822"=>$request->A822, "A823"=>$request->A823, "A824"=>$request->A824,
                 "A71"=>$request->A71, "A72"=>$request->A72, "A73"=>$request->A73, "A74"=>$request->A74, "A75"=>$request->A75, "A76"=>$request->A76, "A77"=>$request->A77, "A78"=>$request->A78, "A79"=>$request->A79, "A710"=>$request->A710, "A711"=>$request->A711, "A712"=>$request->A712, "A713"=>$request->A713, "A714"=>$request->A714, "A715"=>$request->A715, "A716"=>$request->A716, "A717"=>$request->A717, "A718"=>$request->A718, "A719"=>$request->A719, "A720"=>$request->A720, "A721"=>$request->A721, "A722"=>$request->A722, "A723"=>$request->A723, "A724"=>$request->A724,
@@ -147,7 +148,7 @@ class OrganoleptikController extends Controller
         }
         else{
             organoleptik::insert([
-                "id_ppk"=> $id_ppk,"jenis"=>$jenis,
+                "id_ppk"=> $id_ppk,"jenis"=>$jenis, "petugas"=>$request->petugas,
                 "A91"=>$request->A91, "A92"=>$request->A92, "A93"=>$request->A93, "A94"=>$request->A94, "A95"=>$request->A95, "A96"=>$request->A96, "A97"=>$request->A97, "A98"=>$request->A98, "A99"=>$request->A99, "A910"=>$request->A910, "A911"=>$request->A911, "A912"=>$request->A912, "A913"=>$request->A913, "A914"=>$request->A914, "A915"=>$request->A915, "A916"=>$request->A916, "A917"=>$request->A917, "A918"=>$request->A918, "A919"=>$request->A919, "A920"=>$request->A920, "A921"=>$request->A921, "A922"=>$request->A922, "A923"=>$request->A923, "A924"=>$request->A924,
                 "A81"=>$request->A81, "A82"=>$request->A82, "A83"=>$request->A83, "A84"=>$request->A84, "A85"=>$request->A85, "A86"=>$request->A86, "A87"=>$request->A87, "A88"=>$request->A88, "A89"=>$request->A89, "A810"=>$request->A810, "A811"=>$request->A811, "A812"=>$request->A812, "A813"=>$request->A813, "A814"=>$request->A814, "A815"=>$request->A815, "A816"=>$request->A816, "A817"=>$request->A817, "A818"=>$request->A818, "A819"=>$request->A819, "A820"=>$request->A820, "A821"=>$request->A821, "A822"=>$request->A822, "A823"=>$request->A823, "A824"=>$request->A824,
                 "A71"=>$request->A71, "A72"=>$request->A72, "A73"=>$request->A73, "A74"=>$request->A74, "A75"=>$request->A75, "A76"=>$request->A76, "A77"=>$request->A77, "A78"=>$request->A78, "A79"=>$request->A79, "A710"=>$request->A710, "A711"=>$request->A711, "A712"=>$request->A712, "A713"=>$request->A713, "A714"=>$request->A714, "A715"=>$request->A715, "A716"=>$request->A716, "A717"=>$request->A717, "A718"=>$request->A718, "A719"=>$request->A719, "A720"=>$request->A720, "A721"=>$request->A721, "A722"=>$request->A722, "A723"=>$request->A723, "A724"=>$request->A724,
@@ -208,6 +209,49 @@ class OrganoleptikController extends Controller
         if(count($ada) > 0){
             organoleptik::where('id_ppk', $id_ppk)->where('jenis', $jenis)->delete();
         }
-        return redirect('/admin/organoleptik/'.$id_ppk.'/'.$jenis)->with('berhasilSimpan','Data berhasil direset');;
+        return redirect('/admin/organoleptik/'.$id_ppk.'/'.$jenis)->with('berhasilSimpan','Data berhasil direset');
+    }
+
+    public function print(Request $request){
+
+        $id_ppk = request()->segment(3);
+        $jenis = request()->segment(4);
+        // $ada = DB::connection('sqlsrv2')->table('organoleptik')
+        //     ->where('id_ppk',$id_ppk)
+        //     ->where('jenis', $jenis)
+        //     ->select('*')
+        //     ->get();
+
+        // if(count($ada) > 0){
+        //     organoleptik::where('id_ppk', $id_ppk)->where('jenis', $jenis)->delete();
+        // }
+        $list = DB::connection('sqlsrv2')->table('v_data_header')
+            ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
+            ->get();
+
+        $header = DB::connection('sqlsrv2')->table('v_data_header')
+            ->where('id_ppk',$id_ppk)
+            ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
+            ->get();
+
+
+
+        $check = DB::connection('sqlsrv2')->table('organoleptik')
+            ->where('id_ppk',$id_ppk)
+            ->where('jenis',$jenis)
+            ->orderBy('id_ppk','desc')
+            ->select('*')
+            ->get();
+
+
+        return view('admin.organoleptikprint',[
+            'title'=>'Organoleptik',
+            'list'=>$list,
+            'header'=>$header,
+            'check' => ($check->isNotEmpty()) ? $check : null,
+            'jenis'=>$jenis,
+            'id_ppk'=>$id_ppk
+            
+        ]);
     }
 }
