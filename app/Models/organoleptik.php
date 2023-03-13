@@ -12,7 +12,7 @@ class organoleptik extends Model
     protected $table = "organoleptik";
     public $timestamps = false;
     protected $fillable = [
-        'id_ppk','jenis', 'petugas',
+        'id_ppk','jenis', 'petugas','nilai',
         'A91', 'A92', 'A93', 'A94', 'A95', 'A96', 'A97', 'A98', 'A99', 'A910', 'A911', 'A912', 'A913', 'A914', 'A915', 'A916', 'A917', 'A918', 'A919', 'A920', 'A921', 'A922', 'A923', 'A924',
         'A81', 'A82', 'A83', 'A84', 'A85', 'A86', 'A87', 'A88', 'A89', 'A810', 'A811', 'A812', 'A813', 'A814', 'A815', 'A816', 'A817', 'A818', 'A819', 'A820', 'A821', 'A822', 'A823', 'A824',
         'A71', 'A72', 'A73', 'A74', 'A75', 'A76', 'A77', 'A78', 'A79', 'A710', 'A711', 'A712', 'A713', 'A714', 'A715', 'A716', 'A717', 'A718', 'A719', 'A720', 'A721', 'A722', 'A723', 'A724',

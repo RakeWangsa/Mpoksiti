@@ -254,4 +254,75 @@ class OrganoleptikController extends Controller
             
         ]);
     }
+
+
+
+    public function NilaiOrganoleptik2(Request $request){
+
+        $id_ppk = request()->segment(3);
+        $jenis = request()->segment(4);
+
+        $list = DB::connection('sqlsrv2')->table('v_data_header')
+            ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
+            ->get();
+
+        $header = DB::connection('sqlsrv2')->table('v_data_header')
+            ->where('id_ppk',$id_ppk)
+            ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
+            ->get();
+
+
+
+        $check = DB::connection('sqlsrv2')->table('organoleptik')
+            ->where('id_ppk',$id_ppk)
+            ->where('jenis',$jenis)
+            ->select('*')
+            ->get();
+
+
+        return view('admin.organoleptik',[
+            'title'=>'Organoleptik',
+            'list'=>$list,
+            'header'=>$header,
+            'check' => ($check->isNotEmpty()) ? $check : null,
+            'jenis'=>$jenis,
+            'id_ppk'=>$id_ppk
+            
+        ]);
+    }
+    
+    public function submit2(Request $request){
+
+        $id_ppk = request()->segment(3);
+        $jenis = request()->segment(4);
+
+        $ada = DB::connection('sqlsrv2')->table('organoleptik')
+            ->where('id_ppk',$id_ppk)
+            ->where('jenis',$jenis)
+            ->select('*')
+            ->get();
+
+        $nilai = DB::connection('sqlsrv2')->table('organoleptik')
+            ->where('id_ppk',$id_ppk)
+            ->where('jenis',$jenis)
+            ->select('*')
+            ->get();
+        $nilaibaru=$nilai.'';
+
+
+        if(count($ada) > 0){
+            organoleptik::where('id_ppk', $id_ppk)->where('jenis', $jenis)->update([
+                "petugas"=>$request->petugas,
+                "nilai"=>$nilaibaru
+                 ]);
+        }
+        else{
+            organoleptik::insert([
+                "id_ppk"=> $id_ppk,"jenis"=>$jenis, "petugas"=>$request->petugas,
+                "nilai"=>$nilaibaru
+            ]);
+        }
+        return redirect('/admin/organoleptik/'.$id_ppk.'/'.$jenis)->with('berhasilSimpan','Data berhasil disimpan');
+    }
+
 }
