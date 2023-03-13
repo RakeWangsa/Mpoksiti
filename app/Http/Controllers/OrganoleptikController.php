@@ -255,6 +255,43 @@ class OrganoleptikController extends Controller
         ]);
     }
 
+    public function edit(Request $request){
+
+        $jenis = request()->segment(4);
+        // $ada = DB::connection('sqlsrv2')->table('organoleptik')
+        //     ->where('id_ppk',$id_ppk)
+        //     ->where('jenis', $jenis)
+        //     ->select('*')
+        //     ->get();
+
+        // if(count($ada) > 0){
+        //     organoleptik::where('id_ppk', $id_ppk)->where('jenis', $jenis)->delete();
+        // }
+        // $list = DB::connection('sqlsrv2')->table('v_data_header')
+        //     ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
+        //     ->get();
+
+        // $header = DB::connection('sqlsrv2')->table('v_data_header')
+        //     ->where('id_ppk',$id_ppk)
+        //     ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
+        //     ->get();
+
+
+
+        // $check = DB::connection('sqlsrv2')->table('organoleptik')
+        //     ->where('id_ppk',$id_ppk)
+        //     ->where('jenis',$jenis)
+        //     ->orderBy('id_ppk','desc')
+        //     ->select('*')
+        //     ->get();
+
+
+        return view('admin.organoleptikedit',[
+            'title'=>'Organoleptik',
+            'jenis'=>$jenis,
+            
+        ]);
+    }
 
 
     public function NilaiOrganoleptik2(Request $request){

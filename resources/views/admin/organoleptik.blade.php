@@ -28,7 +28,7 @@
     <h1 class="h2" style="font-weight:bold; color:#2E2A61;">Form Organoleptik</h1>
     
     <div class="d-flex">
-      <div class="dropdown me-3 mx-2">
+      <div class="dropdown me-3">
         <a class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Pilih No PPK
         </a>
@@ -48,7 +48,7 @@
 
       @if (isset($header))
       <div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="btn btn-secondary dropdown-toggle mx-2" style="background-color:#104E8B" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Pilih Jenis
         </a>  
         <ul class="dropdown-menu">
@@ -78,7 +78,7 @@
       </div>
       @else
       <div class="dropdown">
-        <button type="button" class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" data-toggle="modal" data-target="#exampleModal">Pilih Jenis</button>
+        <button type="button" class="btn btn-secondary dropdown-toggle mx-2" style="background-color:#104E8B" data-toggle="modal" data-target="#exampleModal">Pilih Jenis</button>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -102,6 +102,36 @@
       </div>
       @endif
 
+      <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Edit Form
+        </a>  
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Daging Rajungan Pasteu'])}}">Daging Rajungan Pasteu</a></li>
+          <li><a class="dropdown-item" href="">Paha Kodok Beku</a></li>
+          <li><a class="dropdown-item" href="">Scallop Beku</a></li>
+          <li><a class="dropdown-item" href="">Daging Kerang Beku</a></li>
+          <li><a class="dropdown-item" href="">Sotong Beku</a></li>
+          <li><a class="dropdown-item" href="">Ubur Ubur</a></li>
+          <li><a class="dropdown-item" href="">Cumi Beku 2</a></li>
+          <li><a class="dropdown-item" href="">Gurita Beku</a></li>
+          <li><a class="dropdown-item" href="">Ikan Beku</a></li>
+          <li><a class="dropdown-item" href="">Ikan Segar</a></li>
+          <li><a class="dropdown-item" href="">Steak Ikan Beku</a></li>
+          <li><a class="dropdown-item" href="">Udang Masak Beku</a></li>
+          <li><a class="dropdown-item" href="">Udang Utuh Block Beku</a></li>
+          <li><a class="dropdown-item" href="">Udang Kupas Mentah Beku</a></li>
+          <li><a class="dropdown-item" href="">Udang Lapis Tepung</a></li>
+          <li><a class="dropdown-item" href="">Ikan Asin Kering</a></li>
+          <li><a class="dropdown-item" href="">Ikan Beku 2</a></li>
+          <li><a class="dropdown-item" href="">Udang Beku 2</a></li>
+          <li><a class="dropdown-item" href="">Kerupuk</a></li>
+          <li><a class="dropdown-item" href="">Ikan Kering</a></li>
+          <li><a class="dropdown-item" href="">Sur</a></li>
+          <li><a class="dropdown-item" href="">Agar Powder</a></li>
+        </ul>
+      </div>
+
     </div>
     
 
@@ -121,8 +151,9 @@
             <h6>Tanggal : </h6>
             <h6>No PPK/No Pengajuan : </h6>
             <h6>Jenis Contoh : </h6>
-            @endif
+          @endif
         </div>
+        
         <style type="text/css">
             table.tableizer-table {
                 font-size: 12px;
