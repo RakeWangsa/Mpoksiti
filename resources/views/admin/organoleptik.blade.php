@@ -174,7 +174,7 @@
         @if(isset($jenis))
         <form method="GET" action="{{route('admin.submitOrganoleptik', ['id_ppk' => $header[0]->id_ppk,'jenis'=>$jenis])}}"> 
         @if($jenis=='Daging Rajungan Pasteu')
-        {{-- @if (isset($check)) --}}
+
         <table class="tableizer-table">
         <thead><tr class="tableizer-firstrow"><th class="text-center">Spesifikasi</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>Nilai</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody>
          <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
@@ -192,25 +192,7 @@
          <tr><td>Warna  daging  kecoklatan  sangat  kusam,  serpihan tidak rata, lendir agak banyak, tidak cemerlang, tidak menarik.</td><td>3</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B3{{$i}}" @if (isset($check)) @if($check[0]->{"B3".$i}) checked @endif @endif></td>@endfor</tr>
          <tr><td>Warna daging kecoklatan sangat kusam, serpihan tidak rata, lendir tebal, tidak cemerlang, tidak menarik.</td><td>1</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B1{{$i}}" @if (isset($check)) @if($check[0]->{"B1".$i}) checked @endif @endif></td>@endfor</tr>
         </tbody></table>
-        {{-- @else --}}
-        {{-- <table class="tableizer-table">
-          <thead><tr class="tableizer-firstrow"><th class="text-center">Spesifikasi</th><th>Nilai</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody>
-           <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
-           <tr><td>1 Kenampakan</td>@for ($i = 1; $i <= 25; $i++)<td></td>@endfor</tr>
-           <tr><td>a Daging dada</td>@for ($i = 1; $i <= 25; $i++)<td></td>@endfor</tr>
-           <tr><td>Bentuk utuh, warna daging susu sangat cerah, bersih, sangat cemerlang, sangat menarik.</td><td class="text-center">9</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A9{{$i}}"></td>@endfor</tr>
-           <tr><td>Bentuk utuh, sedikit ada serpihan daging, warna daging putih susu cerah, sedikit sekali warna kekuningan, bersih, cemerlang, menarik,</td><td class="text-center">7</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A7{{$i}}"></td>@endfor</tr>
-         <tr><td>Tidak utuh, banyak serpihan daging, warna daging putih susu kusam, banyak warna kekuningan, tidak cemerlang, tidak menarik.</td><td class="text-center">5</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A5{{$i}}"></td>@endfor</tr>
-         <tr><td>Tidak utuh, banyak serpihan daging, warna daging sangat kusam, banyak warna kekuningan, tidak cemerlang, berlendir, tidak menarik.</td><td class="text-center">3</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A3{{$i}}"></td>@endfor</tr>
-         <tr><td>Tidak utuh, banyak serpihan daging, warna daging sangat kusam, banyak warna kekuningan, lendir tebal, tidak menarik.</td><td class="text-center">1</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A1{{$i}}"></td>@endfor</tr>
-         <tr><td>b Daging paha, capit dan kaki</td>@for ($i = 1; $i <= 25; $i++)<td></td>@endfor</tr>
-         <tr><td>Warna daging kecoklatan sangat cerah, serpihan rata, bersih, sangat cemerlang, sangat menarik.</td><td class="text-center">9</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B9{{$i}}"></td>@endfor</tr>
-         <tr><td>Warna daging kecoklatan cerah, serpihan rata, bersih, cemerlang, menarik.</td><td class="text-center">7</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B7{{$i}}"></td>@endfor</tr>
-         <tr><td>Warna daging kecoklatan kusam, serpihan tidak rata, sedikit lendir, kurang cemerlang, tidak menarik.</td><td class="text-center">5</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B5{{$i}}"></td>@endfor</tr>
-         <tr><td>Warna  daging  kecoklatan  sangat  kusam,  serpihan tidak rata, lendir agak banyak, tidak cemerlang, tidak menarik.</td><td class="text-center">3</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B3{{$i}}"></td>@endfor</tr>
-         <tr><td>Warna daging kecoklatan sangat kusam, serpihan tidak rata, lendir tebal, tidak cemerlang, tidak menarik.</td><td class="text-center">1</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B1{{$i}}"></td>@endfor</tr>
-          </tbody></table> --}}
-        {{-- @endif --}}
+
         @elseif($jenis=='Daging Kerang Beku')
         <table class="tableizer-table">
           <thead><tr class="tableizer-firstrow"><th class="text-center">Spesifikasi</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>Nilai</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody>
@@ -243,7 +225,22 @@
            
           </tbody></table>
 
-
+          @elseif($jenis=='Paha Kodok Beku')
+          <table class="tableizer-table">
+            <thead><tr class="tableizer-firstrow"><th class="text-center">Spesifikasi</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>Nilai</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody>
+             <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+             <tr><td>{{ $parameter[0]->parameter1 }}</td><td>{{ $parameter[0]->nilai1 }}</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A9{{$i}}" @if (isset($check)) @if($check[0]->{"A9".$i}) checked @endif @endif></td>@endfor</tr>
+             <tr><td>{{ $parameter[0]->parameter2 }}</td><td>{{ $parameter[0]->nilai2 }}</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A8{{$i}}" @if (isset($check)) @if($check[0]->{"A8".$i}) checked @endif @endif></td>@endfor</tr>
+             <tr><td>{{ $parameter[0]->parameter3 }}</td><td>{{ $parameter[0]->nilai3 }}</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A7{{$i}}" @if (isset($check)) @if($check[0]->{"A7".$i}) checked @endif @endif></td>@endfor</tr>
+             <tr><td>{{ $parameter[0]->parameter4 }}</td><td>{{ $parameter[0]->nilai4 }}</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A6{{$i}}" @if (isset($check)) @if($check[0]->{"A6".$i}) checked @endif @endif></td>@endfor</tr>
+             <tr><td>{{ $parameter[0]->parameter5 }}</td><td>{{ $parameter[0]->nilai5 }}</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A5{{$i}}" @if (isset($check)) @if($check[0]->{"A5".$i}) checked @endif @endif></td>@endfor</tr>
+             <tr><td>{{ $parameter[0]->parameter6 }}</td><td>{{ $parameter[0]->nilai6 }}</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A3{{$i}}" @if (isset($check)) @if($check[0]->{"A3".$i}) checked @endif @endif></td>@endfor</tr>
+             <tr><td>{{ $parameter[0]->parameter7 }}</td><td>{{ $parameter[0]->nilai7 }}</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A1{{$i}}" @if (isset($check)) @if($check[0]->{"A1".$i}) checked @endif @endif></td>@endfor</tr>
+             <tr><td>{{ $parameter[0]->parameter8 }}</td><td>{{ $parameter[0]->nilai8 }}</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A1{{$i}}" @if (isset($check)) @if($check[0]->{"A1".$i}) checked @endif @endif></td>@endfor</tr>
+             <tr><td>{{ $parameter[0]->parameter9 }}</td><td>{{ $parameter[0]->nilai9 }}</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B9{{$i}}" @if (isset($check)) @if($check[0]->{"B9".$i}) checked @endif @endif></td>@endfor</tr>
+             <tr><td>{{ $parameter[0]->parameter10 }}</td><td>{{ $parameter[0]->nilai10 }}</td>@for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B8{{$i}}" @if (isset($check)) @if($check[0]->{"B8".$i}) checked @endif @endif></td>@endfor</tr>
+            </tbody></table>
+  
         @endif
         <label class="mt-2">Petugas Karantina,</label>
         <input type="text" name="petugas" @if(isset($check))value="{{$check[0]->petugas}}" @endif required>

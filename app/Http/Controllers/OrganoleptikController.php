@@ -76,6 +76,11 @@ class OrganoleptikController extends Controller
             ->select('*')
             ->get();
 
+        $parameter = DB::connection('sqlsrv2')->table('parameter')
+        ->where('jenis',$jenis)
+        ->select('*')
+        ->get();
+
 
         return view('admin.organoleptik',[
             'title'=>'Organoleptik',
@@ -83,7 +88,8 @@ class OrganoleptikController extends Controller
             'header'=>$header,
             'check' => ($check->isNotEmpty()) ? $check : null,
             'jenis'=>$jenis,
-            'id_ppk'=>$id_ppk
+            'id_ppk'=>$id_ppk,
+            'parameter'=>$parameter
             
         ]);
     }
