@@ -26,6 +26,11 @@
   </div>
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2" style="font-weight:bold; color:#2E2A61;">Edit Form Organoleptik</h1>
+    <div class="d-flex">
+        <a class="btn btn-secondary" style="background-color:#104E8B" href="/admin/organoleptik/" aria-expanded="false">
+          Form Organoleptik
+        </a>
+    </div>
   </div>
   <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
     <div class="card shadow w-100 responsive" style="margin: top 10px;">
@@ -66,13 +71,11 @@
 
 
 
-        <label class="mt-2">Petugas Karantina,</label>
-        {{-- <input type="text" name="petugas" @if(isset($check))value="{{$check[0]->petugas}}" @endif required>
-        <div class="text-left">
-          <a class="btn btn-danger mt-4 mr-2" href="{{route('admin.resetOrganoleptik', ['id_ppk' => $header[0]->id_ppk,'jenis'=>$jenis])}}" id="reset-btn">Reset</a>
+        <label class="mt-2 mb-4">Petugas Karantina,</label>
+        <div class="text-left mt-4">
+          <a class="btn btn-danger mt-4 mr-2" href="" id="reset-btn">Reset</a>
           <button type="submit" class="btn btn-secondary mt-4" style="background-color:#104E8B">Save</button>
-          <a class="btn btn-secondary mt-4 ml-2" href="{{route('admin.printOrganoleptik', ['id_ppk' => $header[0]->id_ppk,'jenis'=>$jenis])}}">Print</a>
-        </div> --}}
+        </div>
       </form>
 
       

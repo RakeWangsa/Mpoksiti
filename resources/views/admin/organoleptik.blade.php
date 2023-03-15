@@ -108,27 +108,27 @@
         </a>  
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Daging Rajungan Pasteu'])}}">Daging Rajungan Pasteu</a></li>
-          <li><a class="dropdown-item" href="">Paha Kodok Beku</a></li>
-          <li><a class="dropdown-item" href="">Scallop Beku</a></li>
-          <li><a class="dropdown-item" href="">Daging Kerang Beku</a></li>
-          <li><a class="dropdown-item" href="">Sotong Beku</a></li>
-          <li><a class="dropdown-item" href="">Ubur Ubur</a></li>
-          <li><a class="dropdown-item" href="">Cumi Beku 2</a></li>
-          <li><a class="dropdown-item" href="">Gurita Beku</a></li>
-          <li><a class="dropdown-item" href="">Ikan Beku</a></li>
-          <li><a class="dropdown-item" href="">Ikan Segar</a></li>
-          <li><a class="dropdown-item" href="">Steak Ikan Beku</a></li>
-          <li><a class="dropdown-item" href="">Udang Masak Beku</a></li>
-          <li><a class="dropdown-item" href="">Udang Utuh Block Beku</a></li>
-          <li><a class="dropdown-item" href="">Udang Kupas Mentah Beku</a></li>
-          <li><a class="dropdown-item" href="">Udang Lapis Tepung</a></li>
-          <li><a class="dropdown-item" href="">Ikan Asin Kering</a></li>
-          <li><a class="dropdown-item" href="">Ikan Beku 2</a></li>
-          <li><a class="dropdown-item" href="">Udang Beku 2</a></li>
-          <li><a class="dropdown-item" href="">Kerupuk</a></li>
-          <li><a class="dropdown-item" href="">Ikan Kering</a></li>
-          <li><a class="dropdown-item" href="">Sur</a></li>
-          <li><a class="dropdown-item" href="">Agar Powder</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Paha Kodok Beku'])}}">Paha Kodok Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Scallop Beku'])}}">Scallop Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Daging Rajungan Beku'])}}">Daging Kerang Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Sotong Beku'])}}">Sotong Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Ubur Ubur'])}}">Ubur Ubur</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Cumi Beku 2'])}}">Cumi Beku 2</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Gurita Beku'])}}">Gurita Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Ikan Beku'])}}">Ikan Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Ikan Segar'])}}">Ikan Segar</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Steak Ikan Beku'])}}">Steak Ikan Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Udang Masak Beku'])}}">Udang Masak Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Udang Utuh Block Beku'])}}">Udang Utuh Block Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Udang Kupas Mentah Beku'])}}">Udang Kupas Mentah Beku</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Udang Lapis Tepung'])}}">Udang Lapis Tepung</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Ikan Asin Kering'])}}">Ikan Asin Kering</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Ikan Beku 2'])}}">Ikan Beku 2</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Udang Beku 2'])}}">Udang Beku 2</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Kerupuk'])}}">Kerupuk</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Ikan Kering'])}}">Ikan Kering</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Sur'])}}">Sur</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Agar Powder'])}}">Agar Powder</a></li>
         </ul>
       </div>
 
