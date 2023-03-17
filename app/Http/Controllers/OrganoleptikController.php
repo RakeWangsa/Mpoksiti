@@ -285,17 +285,16 @@ class OrganoleptikController extends Controller
 
 
 
-        // $check = DB::connection('sqlsrv2')->table('organoleptik')
-        //     ->where('id_ppk',$id_ppk)
-        //     ->where('jenis',$jenis)
-        //     ->orderBy('id_ppk','desc')
-        //     ->select('*')
-        //     ->get();
+        $parameter = DB::connection('sqlsrv2')->table('parameter')
+            ->where('jenis',$jenis)
+            ->select('*')
+            ->get();
 
 
         return view('admin.organoleptikedit',[
             'title'=>'Organoleptik',
             'jenis'=>$jenis,
+            'parameter'=>$parameter
             
         ]);
     }
