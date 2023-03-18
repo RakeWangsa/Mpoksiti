@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller;
 use App\Models\organoleptik;
+use App\Models\parameter;
 class OrganoleptikController extends Controller
 {
     public function index(Request $request){
@@ -301,7 +302,7 @@ class OrganoleptikController extends Controller
 
     public function editSubmit(Request $request){
 
-        $jenis = request()->segment(3);
+        $jenis = request()->segment(4);
 
         $ada = DB::connection('sqlsrv2')->table('parameter')
             ->where('jenis',$jenis)
@@ -309,7 +310,7 @@ class OrganoleptikController extends Controller
             ->get();
 
         if(count($ada) > 0){
-            organoleptik::where('jenis', $jenis)->update([
+            parameter::where('jenis', $jenis)->update([
                 "parameter1"=>$request->parameter1, "parameter2"=>$request->parameter2, "parameter3"=>$request->parameter3, "parameter4"=>$request->parameter4, "parameter5"=>$request->parameter5, "parameter6"=>$request->parameter6, "parameter7"=>$request->parameter7, "parameter8"=>$request->parameter8, "parameter9"=>$request->parameter9, "parameter10"=>$request->parameter10,
                 "parameter11"=>$request->parameter11, "parameter12"=>$request->parameter12, "parameter13"=>$request->parameter13, "parameter14"=>$request->parameter14, "parameter15"=>$request->parameter15, "parameter16"=>$request->parameter16, "parameter17"=>$request->parameter17, "parameter18"=>$request->parameter18, "parameter19"=>$request->parameter19, "parameter20"=>$request->parameter20,
                 "parameter21"=>$request->parameter21, "parameter22"=>$request->parameter22, "parameter23"=>$request->parameter23, "parameter24"=>$request->parameter24, "parameter25"=>$request->parameter25, "parameter26"=>$request->parameter26, "parameter27"=>$request->parameter27, "parameter28"=>$request->parameter28, "parameter29"=>$request->parameter29, "parameter30"=>$request->parameter30,
@@ -324,7 +325,7 @@ class OrganoleptikController extends Controller
 
         }
         else{
-            organoleptik::insert([
+            parameter::insert([
                 "jenis"=>$jenis,
                 "parameter1"=>$request->parameter1, "parameter2"=>$request->parameter2, "parameter3"=>$request->parameter3, "parameter4"=>$request->parameter4, "parameter5"=>$request->parameter5, "parameter6"=>$request->parameter6, "parameter7"=>$request->parameter7, "parameter8"=>$request->parameter8, "parameter9"=>$request->parameter9, "parameter10"=>$request->parameter10,
                 "parameter11"=>$request->parameter11, "parameter12"=>$request->parameter12, "parameter13"=>$request->parameter13, "parameter14"=>$request->parameter14, "parameter15"=>$request->parameter15, "parameter16"=>$request->parameter16, "parameter17"=>$request->parameter17, "parameter18"=>$request->parameter18, "parameter19"=>$request->parameter19, "parameter20"=>$request->parameter20,
@@ -338,7 +339,7 @@ class OrganoleptikController extends Controller
                 "nilai41"=>$request->nilai41, "nilai42"=>$request->nilai42, "nilai43"=>$request->nilai43, "nilai44"=>$request->nilai44, "nilai45"=>$request->nilai45, "nilai46"=>$request->nilai46, "nilai47"=>$request->nilai47, "nilai48"=>$request->nilai48, "nilai49"=>$request->nilai49, "nilai50"=>$request->nilai50,
             ]);
         }
-        return redirect('/admin/organoleptik)->with('berhasilSimpan','Data berhasil disimpan');
+        return redirect('/admin/organoleptik')->with('berhasilSimpan','Data berhasil disimpan');
     }
 
     public function NilaiOrganoleptik2(Request $request){
