@@ -12,7 +12,7 @@ class organoleptik2 extends Model
     protected $table = "organoleptik2";
     public $timestamps = false;
     protected $fillable = [
-        'id_ppk',
+        'id_ppk','jenis',
         'a31x1', 'a31x2', 'a31x3', 'a31x4', 'a31x5', 'a31x6', 'a31x7', 'a31x8', 'a31x9', 'a31x10', 'a31x11', 'a31x12', 'a31x13', 'a31x14', 'a31x15', 'a31x16', 'a31x17', 'a31x18', 'a31x19', 'a31x20', 'a31x21', 'a31x22', 'a31x23', 'a31x24',
         'a32x1', 'a32x2', 'a32x3', 'a32x4', 'a32x5', 'a32x6', 'a32x7', 'a32x8', 'a32x9', 'a32x10', 'a32x11', 'a32x12', 'a32x13', 'a32x14', 'a32x15', 'a32x16', 'a32x17', 'a32x18', 'a32x19', 'a32x20', 'a32x21', 'a32x22', 'a32x23', 'a32x24',
         'a33x1', 'a33x2', 'a33x3', 'a33x4', 'a33x5', 'a33x6', 'a33x7', 'a33x8', 'a33x9', 'a33x10', 'a33x11', 'a33x12', 'a33x13', 'a33x14', 'a33x15', 'a33x16', 'a33x17', 'a33x18', 'a33x19', 'a33x20', 'a33x21', 'a33x22', 'a33x23', 'a33x24',

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller;
 use App\Models\organoleptik;
+use App\Models\organoleptik1;
+use App\Models\organoleptik2;
 use App\Models\parameter;
 class OrganoleptikController extends Controller
 {
@@ -97,6 +99,20 @@ class OrganoleptikController extends Controller
             ->select('*')
             ->get();
 
+        $check1 = DB::connection('sqlsrv2')->table('organoleptik1')
+            ->where('id_ppk',$id_ppk)
+            ->where('jenis',$jenis)
+            ->orderBy('id_ppk','desc')
+            ->select('*')
+            ->get();
+
+        $check2 = DB::connection('sqlsrv2')->table('organoleptik2')
+            ->where('id_ppk',$id_ppk)
+            ->where('jenis',$jenis)
+            ->orderBy('id_ppk','desc')
+            ->select('*')
+            ->get();
+
         $parameter = DB::connection('sqlsrv2')->table('parameter')
         ->where('jenis',$jenis)
         ->select('*')
@@ -106,7 +122,8 @@ class OrganoleptikController extends Controller
             'title'=>'Organoleptik',
             'list'=>$list,
             'header'=>$header,
-            'check' => ($check->isNotEmpty()) ? $check : null,
+            'check1' => ($check1->isNotEmpty()) ? $check1 : null,
+            'check2' => ($check2->isNotEmpty()) ? $check2 : null,
             'jenis'=>$jenis,
             'id_ppk'=>$id_ppk,
             'jumlah'=>$jumlah,
@@ -120,14 +137,14 @@ class OrganoleptikController extends Controller
         $id_ppk = request()->segment(3);
         $jenis = request()->segment(4);
 
-        $ada = DB::connection('sqlsrv2')->table('organoleptik')
+        $ada1 = DB::connection('sqlsrv2')->table('organoleptik1')
             ->where('id_ppk',$id_ppk)
             ->where('jenis',$jenis)
             ->select('*')
             ->get();
 
-        if(count($ada) > 0){
-            organoleptik::where('id_ppk', $id_ppk)->where('jenis', $jenis)->update([
+        if(count($ada1) > 0){
+            organoleptik1::where('id_ppk', $id_ppk)->where('jenis', $jenis)->update([
                 "petugas"=>$request->petugas,
                 "a1x1"=>$request->a1x1, "a1x2"=>$request->a1x2, "a1x3"=>$request->a1x3, "a1x4"=>$request->a1x4, "a1x5"=>$request->a1x5, "a1x6"=>$request->a1x6, "a1x7"=>$request->a1x7, "a1x8"=>$request->a1x8, "a1x9"=>$request->a1x9, "a1x10"=>$request->a1x10, "a1x11"=>$request->a1x11, "a1x12"=>$request->a1x12, "a1x13"=>$request->a1x13, "a1x14"=>$request->a1x14, "a1x15"=>$request->a1x15, "a1x16"=>$request->a1x16, "a1x17"=>$request->a1x17, "a1x18"=>$request->a1x18, "a1x19"=>$request->a1x19, "a1x20"=>$request->a1x20, "a1x21"=>$request->a1x21, "a1x22"=>$request->a1x22, "a1x23"=>$request->a1x23, "a1x24"=>$request->a1x24,
                 "a2x1"=>$request->a2x1, "a2x2"=>$request->a2x2, "a2x3"=>$request->a2x3, "a2x4"=>$request->a2x4, "a2x5"=>$request->a2x5, "a2x6"=>$request->a2x6, "a2x7"=>$request->a2x7, "a2x8"=>$request->a2x8, "a2x9"=>$request->a2x9, "a2x10"=>$request->a2x10, "a2x11"=>$request->a2x11, "a2x12"=>$request->a2x12, "a2x13"=>$request->a2x13, "a2x14"=>$request->a2x14, "a2x15"=>$request->a2x15, "a2x16"=>$request->a2x16, "a2x17"=>$request->a2x17, "a2x18"=>$request->a2x18, "a2x19"=>$request->a2x19, "a2x20"=>$request->a2x20, "a2x21"=>$request->a2x21, "a2x22"=>$request->a2x22, "a2x23"=>$request->a2x23, "a2x24"=>$request->a2x24,
@@ -163,7 +180,7 @@ class OrganoleptikController extends Controller
 
         }
         else{
-            organoleptik::insert([
+            organoleptik1::insert([
                 "id_ppk"=> $id_ppk,"jenis"=>$jenis, "petugas"=>$request->petugas,
                 "a1x1"=>$request->a1x1, "a1x2"=>$request->a1x2, "a1x3"=>$request->a1x3, "a1x4"=>$request->a1x4, "a1x5"=>$request->a1x5, "a1x6"=>$request->a1x6, "a1x7"=>$request->a1x7, "a1x8"=>$request->a1x8, "a1x9"=>$request->a1x9, "a1x10"=>$request->a1x10, "a1x11"=>$request->a1x11, "a1x12"=>$request->a1x12, "a1x13"=>$request->a1x13, "a1x14"=>$request->a1x14, "a1x15"=>$request->a1x15, "a1x16"=>$request->a1x16, "a1x17"=>$request->a1x17, "a1x18"=>$request->a1x18, "a1x19"=>$request->a1x19, "a1x20"=>$request->a1x20, "a1x21"=>$request->a1x21, "a1x22"=>$request->a1x22, "a1x23"=>$request->a1x23, "a1x24"=>$request->a1x24,
                 "a2x1"=>$request->a2x1, "a2x2"=>$request->a2x2, "a2x3"=>$request->a2x3, "a2x4"=>$request->a2x4, "a2x5"=>$request->a2x5, "a2x6"=>$request->a2x6, "a2x7"=>$request->a2x7, "a2x8"=>$request->a2x8, "a2x9"=>$request->a2x9, "a2x10"=>$request->a2x10, "a2x11"=>$request->a2x11, "a2x12"=>$request->a2x12, "a2x13"=>$request->a2x13, "a2x14"=>$request->a2x14, "a2x15"=>$request->a2x15, "a2x16"=>$request->a2x16, "a2x17"=>$request->a2x17, "a2x18"=>$request->a2x18, "a2x19"=>$request->a2x19, "a2x20"=>$request->a2x20, "a2x21"=>$request->a2x21, "a2x22"=>$request->a2x22, "a2x23"=>$request->a2x23, "a2x24"=>$request->a2x24,
@@ -204,14 +221,23 @@ class OrganoleptikController extends Controller
 
         $id_ppk = request()->segment(3);
         $jenis = request()->segment(4);
-        $ada = DB::connection('sqlsrv2')->table('organoleptik')
+        $ada1 = DB::connection('sqlsrv2')->table('organoleptik1')
+            ->where('id_ppk',$id_ppk)
+            ->where('jenis', $jenis)
+            ->select('*')
+            ->get();
+        
+        $ada2 = DB::connection('sqlsrv2')->table('organoleptik2')
             ->where('id_ppk',$id_ppk)
             ->where('jenis', $jenis)
             ->select('*')
             ->get();
 
-        if(count($ada) > 0){
-            organoleptik::where('id_ppk', $id_ppk)->where('jenis', $jenis)->delete();
+        if(count($ada1) > 0){
+            organoleptik1::where('id_ppk', $id_ppk)->where('jenis', $jenis)->delete();
+        }
+        if(count($ada2) > 0){
+            organoleptik2::where('id_ppk', $id_ppk)->where('jenis', $jenis)->delete();
         }
         return redirect('/admin/organoleptik/'.$id_ppk.'/'.$jenis)->with('berhasilSimpan','Data berhasil direset');
     }
@@ -247,20 +273,6 @@ class OrganoleptikController extends Controller
             ->select('*')
             ->get();
 
-        $check1 = DB::connection('sqlsrv2')->table('organoleptik1')
-            ->where('id_ppk',$id_ppk)
-            ->where('jenis',$jenis)
-            ->orderBy('id_ppk','desc')
-            ->select('*')
-            ->get();
-
-        $check2 = DB::connection('sqlsrv2')->table('organoleptik2')
-            ->where('id_ppk',$id_ppk)
-            ->where('jenis',$jenis)
-            ->orderBy('id_ppk','desc')
-            ->select('*')
-            ->get();
-
 
         return view('admin.organoleptikprint',[
             'title'=>'Organoleptik',
@@ -268,10 +280,7 @@ class OrganoleptikController extends Controller
             'header'=>$header,
             'check' => ($check->isNotEmpty()) ? $check : null,
             'jenis'=>$jenis,
-            'id_ppk'=>$id_ppk,
-            'check1'=>$check1,
-            'check2'=>$check2,
-            
+            'id_ppk'=>$id_ppk,            
         ]);
     }
 
