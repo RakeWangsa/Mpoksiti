@@ -35,13 +35,14 @@
   <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
     <div class="card shadow w-100 responsive" style="margin: top 10px;">
       <div class="card-body" style="margin: top 10px;">
+        <form method="GET" action="{{route('admin.editSubmitOrganoleptik', ['jenis'=>$jenis])}}"> 
         <div class="mt-2 mb-4">
             <h6>Nama Perusahaan : </h6>
             <h6>Tanggal : </h6>
             <h6>No PPK/No Pengajuan : </h6>
             <div class="d-flex align-items-center">
               <h6 class="mr-2">Jenis Contoh :</h6>
-              <input type="text" name="jenis"  @if(isset($jenis)) value="{{ $jenis }}" @endif>
+              <input type="text" name="jenis"  @if(isset($jenis)) @if(!$jenis=='baru') value="{{ $jenis }}" @endif @endif required>
             </div>
             
         </div>
@@ -63,7 +64,7 @@
                 font-weight: bold;
             }
         </style>
-         <form method="GET" action="{{route('admin.editSubmitOrganoleptik', ['jenis'=>$jenis])}}"> 
+         
         <table class="tableizer-table">
         <thead><tr class="tableizer-firstrow"><th class="text-center">Spesifikasi</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>Nilai</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody>
          <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr> 

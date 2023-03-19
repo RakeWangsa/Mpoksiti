@@ -70,16 +70,6 @@ class OrganoleptikController extends Controller
             ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
             ->get();
 
-        // $jumlah = DB::connection('sqlsrv2')->table('parameter')
-        //     ->where('jenis', $jenis)
-        //     ->where(function($query) {
-        //         for($i = 1; $i <= 50; $i++) {
-        //             $query->where('parameter'.$i, '!=', NULL);
-        //         }
-        //     })
-        //     ->select('*')
-        //     ->get();
-
         $jumlah=0;
         for($i = 1; $i <= 50; $i++) {
             $hitung = DB::connection('sqlsrv2')->table('parameter')
@@ -92,11 +82,8 @@ class OrganoleptikController extends Controller
             }
         }
 
-        $check = DB::connection('sqlsrv2')->table('organoleptik')
-            ->where('id_ppk',$id_ppk)
-            ->where('jenis',$jenis)
-            ->orderBy('id_ppk','desc')
-            ->select('*')
+        $jenisform= DB::connection('sqlsrv2')->table('parameter')
+            ->select('jenis')
             ->get();
 
         $check1 = DB::connection('sqlsrv2')->table('organoleptik1')
@@ -127,7 +114,8 @@ class OrganoleptikController extends Controller
             'jenis'=>$jenis,
             'id_ppk'=>$id_ppk,
             'jumlah'=>$jumlah,
-            'parameter'=>$parameter
+            'parameter'=>$parameter,
+            'jenisform'=>$jenisform
             
         ]);
     }
@@ -389,7 +377,7 @@ class OrganoleptikController extends Controller
 
         if(count($ada) > 0){
             parameter::where('jenis', $jenis)->update([
-                "jenis"=>$jenis,
+                "jenis"=>$request->jenis,
                 "parameter1"=>$request->parameter1, "parameter2"=>$request->parameter2, "parameter3"=>$request->parameter3, "parameter4"=>$request->parameter4, "parameter5"=>$request->parameter5, "parameter6"=>$request->parameter6, "parameter7"=>$request->parameter7, "parameter8"=>$request->parameter8, "parameter9"=>$request->parameter9, "parameter10"=>$request->parameter10,
                 "parameter11"=>$request->parameter11, "parameter12"=>$request->parameter12, "parameter13"=>$request->parameter13, "parameter14"=>$request->parameter14, "parameter15"=>$request->parameter15, "parameter16"=>$request->parameter16, "parameter17"=>$request->parameter17, "parameter18"=>$request->parameter18, "parameter19"=>$request->parameter19, "parameter20"=>$request->parameter20,
                 "parameter21"=>$request->parameter21, "parameter22"=>$request->parameter22, "parameter23"=>$request->parameter23, "parameter24"=>$request->parameter24, "parameter25"=>$request->parameter25, "parameter26"=>$request->parameter26, "parameter27"=>$request->parameter27, "parameter28"=>$request->parameter28, "parameter29"=>$request->parameter29, "parameter30"=>$request->parameter30,
@@ -404,7 +392,7 @@ class OrganoleptikController extends Controller
         }
         else{
             parameter::insert([
-                "jenis"=>$jenis,
+                "jenis"=>$request->jenis,
                 "parameter1"=>$request->parameter1, "parameter2"=>$request->parameter2, "parameter3"=>$request->parameter3, "parameter4"=>$request->parameter4, "parameter5"=>$request->parameter5, "parameter6"=>$request->parameter6, "parameter7"=>$request->parameter7, "parameter8"=>$request->parameter8, "parameter9"=>$request->parameter9, "parameter10"=>$request->parameter10,
                 "parameter11"=>$request->parameter11, "parameter12"=>$request->parameter12, "parameter13"=>$request->parameter13, "parameter14"=>$request->parameter14, "parameter15"=>$request->parameter15, "parameter16"=>$request->parameter16, "parameter17"=>$request->parameter17, "parameter18"=>$request->parameter18, "parameter19"=>$request->parameter19, "parameter20"=>$request->parameter20,
                 "parameter21"=>$request->parameter21, "parameter22"=>$request->parameter22, "parameter23"=>$request->parameter23, "parameter24"=>$request->parameter24, "parameter25"=>$request->parameter25, "parameter26"=>$request->parameter26, "parameter27"=>$request->parameter27, "parameter28"=>$request->parameter28, "parameter29"=>$request->parameter29, "parameter30"=>$request->parameter30,

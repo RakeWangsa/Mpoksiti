@@ -107,7 +107,13 @@
           Edit Form
         </a>  
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Daging Rajungan Pasteu'])}}">Daging Rajungan Pasteu</a></li>
+          @if(isset($jenisform))
+            @foreach($jenisform as $jnsform)
+            <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'$jnsform->jenis'])}}">{{ $jnsform->jenis }}</a></li>
+            @endforeach
+          @endif
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'baru'])}}">Tambah Jenis Baru</a></li>
+          {{-- <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Daging Rajungan Pasteu'])}}">Daging Rajungan Pasteu</a></li>
           <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Paha Kodok Beku'])}}">Paha Kodok Beku</a></li>
           <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Scallop Beku'])}}">Scallop Beku</a></li>
           <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Daging Rajungan Beku'])}}">Daging Kerang Beku</a></li>
@@ -128,7 +134,7 @@
           <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Kerupuk'])}}">Kerupuk</a></li>
           <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Ikan Kering'])}}">Ikan Kering</a></li>
           <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Sur'])}}">Sur</a></li>
-          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Agar Powder'])}}">Agar Powder</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'Agar Powder'])}}">Agar Powder</a></li> --}}
         </ul>
       </div>
 
@@ -238,7 +244,6 @@
               @if (isset($parameter[0]->$nilai_value))
                 @for ($i = 1; $i <= 24; $i++)<td>
                   <input type="checkbox" name="a{{$table}}x{{$i}}"
-
                   @if ($table<=30)
                     @if (isset($check1))
                       @if($check1[0]->{"a".$table."x".$i}) checked @endif
@@ -253,7 +258,6 @@
               @else
                 @for ($i = 1; $i <= 24; $i++)<td></td>@endfor
               @endif</tr>
-            
             @endfor
             </tbody></table>
   
