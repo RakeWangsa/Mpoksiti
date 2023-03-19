@@ -38,11 +38,11 @@ class OrganoleptikController extends Controller
             ->get();
 
 
-        $check = DB::connection('sqlsrv2')->table('organoleptik')
-            ->where('id_ppk',$id_ppk)
-            ->orderBy('id_ppk','desc')
-            ->select('*')
-            ->get();
+        // $check = DB::connection('sqlsrv2')->table('organoleptik')
+        //     ->where('id_ppk',$id_ppk)
+        //     ->orderBy('id_ppk','desc')
+        //     ->select('*')
+        //     ->get();
         
         // $jenis='';
 
@@ -50,7 +50,7 @@ class OrganoleptikController extends Controller
             'title'=>'Organoleptik',
             'list'=>$list,
             'header'=>$header,
-            'check' => ($check->isNotEmpty()) ? $check : null,
+            //'check' => ($check->isNotEmpty()) ? $check : null,
             'id_ppk'=>$id_ppk,
             // 'jenis'=>$jenis
         ]);
@@ -88,7 +88,7 @@ class OrganoleptikController extends Controller
                 ->select('*')
                 ->get();
             if(count($hitung) > 0){
-                $jumlah=$jumlah+1;
+                $jumlah=$i;
             }
         }
 
@@ -343,6 +343,13 @@ class OrganoleptikController extends Controller
         }
         return redirect('/admin/organoleptik')->with('berhasilSimpan','Data berhasil disimpan');
     }
+    public function editReset(Request $request){
 
+        $jenis = request()->segment(4);
+
+        parameter::where('jenis', $jenis)->delete();
+        parameter::insert(["jenis"=>$jenis]);
+        return redirect('/admin/organoleptik/edit/'.$jenis)->with('berhasilSimpan','Data berhasil direset');
+    }
 
 }

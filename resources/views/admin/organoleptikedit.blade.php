@@ -70,7 +70,15 @@
          @for ($table = 1; $table <= 50; $table++)
          @php $parameter_value = "parameter" . $table; @endphp
          @php $nilai_value = "nilai" . $table; @endphp
-         <tr><td><input type="text" name="{{ $parameter_value }}" size="75" @if(isset($parameter[0]->$parameter_value)) value="{{$parameter[0]->$parameter_value}}" @endif></td><td><input type="text" name="{{ $nilai_value }}" @if(isset($parameter[0]->$nilai_value)) value="{{$parameter[0]->$nilai_value}}" @endif size="1" pattern="[1-9]{1}" title="Input harus berupa angka 1-9"></td>@for ($i = 1; $i <= 24; $i++)<td></td>@endfor</tr>
+         <tr>
+          <td>
+            <input type="text" name="{{ $parameter_value }}" size="75" @if(isset($parameter[0]->$parameter_value)) value="{{$parameter[0]->$parameter_value}}" @endif>
+          </td>
+          <td>
+            <input type="text" name="{{ $nilai_value }}" @if(isset($parameter[0]->$nilai_value)) value="{{$parameter[0]->$nilai_value}}" @endif size="1" pattern="[1-9]{1}" title="Input harus berupa angka 1-9">
+          </td>
+          @for ($i = 1; $i <= 24; $i++)<td></td>@endfor
+        </tr>
          @endfor
         </tbody></table>
         
@@ -79,7 +87,7 @@
 
         <label class="mt-2 mb-4">Petugas Karantina,</label>
         <div class="text-left mt-4">
-          <a class="btn btn-danger mt-4 mr-2" href="" id="reset-btn">Reset</a>
+          <a class="btn btn-danger mt-4 mr-2" href="{{route('admin.editResetOrganoleptik', ['jenis'=>$jenis])}}" id="reset-btn">Reset</a>
           <button type="submit" class="btn btn-secondary mt-4" style="background-color:#104E8B">Save</button>
         </div>
       </form>
