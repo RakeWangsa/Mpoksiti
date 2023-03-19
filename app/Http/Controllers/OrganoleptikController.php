@@ -68,7 +68,27 @@ class OrganoleptikController extends Controller
             ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
             ->get();
 
+        // $jumlah = DB::connection('sqlsrv2')->table('parameter')
+        //     ->where('jenis', $jenis)
+        //     ->where(function($query) {
+        //         for($i = 1; $i <= 50; $i++) {
+        //             $query->where('parameter'.$i, '!=', NULL);
+        //         }
+        //     })
+        //     ->select('*')
+        //     ->get();
 
+        $jumlah=0;
+        for($i = 1; $i <= 50; $i++) {
+            $hitung = DB::connection('sqlsrv2')->table('parameter')
+                ->where('jenis', $jenis)
+                ->where('parameter'.$i, '!=', NULL)
+                ->select('*')
+                ->get();
+            if(count($hitung) > 0){
+                $jumlah=$jumlah+1;
+            }
+        }
 
         $check = DB::connection('sqlsrv2')->table('organoleptik')
             ->where('id_ppk',$id_ppk)
@@ -82,7 +102,6 @@ class OrganoleptikController extends Controller
         ->select('*')
         ->get();
 
-
         return view('admin.organoleptik',[
             'title'=>'Organoleptik',
             'list'=>$list,
@@ -90,6 +109,7 @@ class OrganoleptikController extends Controller
             'check' => ($check->isNotEmpty()) ? $check : null,
             'jenis'=>$jenis,
             'id_ppk'=>$id_ppk,
+            'jumlah'=>$jumlah,
             'parameter'=>$parameter
             
         ]);
@@ -311,18 +331,20 @@ class OrganoleptikController extends Controller
 
         if(count($ada) > 0){
             parameter::where('jenis', $jenis)->update([
+                "jenis"=>$jenis,
                 "parameter1"=>$request->parameter1, "parameter2"=>$request->parameter2, "parameter3"=>$request->parameter3, "parameter4"=>$request->parameter4, "parameter5"=>$request->parameter5, "parameter6"=>$request->parameter6, "parameter7"=>$request->parameter7, "parameter8"=>$request->parameter8, "parameter9"=>$request->parameter9, "parameter10"=>$request->parameter10,
                 "parameter11"=>$request->parameter11, "parameter12"=>$request->parameter12, "parameter13"=>$request->parameter13, "parameter14"=>$request->parameter14, "parameter15"=>$request->parameter15, "parameter16"=>$request->parameter16, "parameter17"=>$request->parameter17, "parameter18"=>$request->parameter18, "parameter19"=>$request->parameter19, "parameter20"=>$request->parameter20,
                 "parameter21"=>$request->parameter21, "parameter22"=>$request->parameter22, "parameter23"=>$request->parameter23, "parameter24"=>$request->parameter24, "parameter25"=>$request->parameter25, "parameter26"=>$request->parameter26, "parameter27"=>$request->parameter27, "parameter28"=>$request->parameter28, "parameter29"=>$request->parameter29, "parameter30"=>$request->parameter30,
                 "parameter31"=>$request->parameter31, "parameter32"=>$request->parameter32, "parameter33"=>$request->parameter33, "parameter34"=>$request->parameter34, "parameter35"=>$request->parameter35, "parameter36"=>$request->parameter36, "parameter37"=>$request->parameter37, "parameter38"=>$request->parameter38, "parameter39"=>$request->parameter39, "parameter40"=>$request->parameter40,
                 "parameter41"=>$request->parameter41, "parameter42"=>$request->parameter42, "parameter43"=>$request->parameter43, "parameter44"=>$request->parameter44, "parameter45"=>$request->parameter45, "parameter46"=>$request->parameter46, "parameter47"=>$request->parameter47, "parameter48"=>$request->parameter48, "parameter49"=>$request->parameter49, "parameter50"=>$request->parameter50,
+                "parameter51"=>$request->parameter51, "parameter52"=>$request->parameter52, "parameter53"=>$request->parameter53, "parameter54"=>$request->parameter54, "parameter55"=>$request->parameter55, "parameter56"=>$request->parameter56, "parameter57"=>$request->parameter57, "parameter58"=>$request->parameter58, "parameter59"=>$request->parameter59, "parameter60"=>$request->parameter60,
                 "nilai1"=>$request->nilai1, "nilai2"=>$request->nilai2, "nilai3"=>$request->nilai3, "nilai4"=>$request->nilai4, "nilai5"=>$request->nilai5, "nilai6"=>$request->nilai6, "nilai7"=>$request->nilai7, "nilai8"=>$request->nilai8, "nilai9"=>$request->nilai9, "nilai10"=>$request->nilai10,
                 "nilai11"=>$request->nilai11, "nilai12"=>$request->nilai12, "nilai13"=>$request->nilai13, "nilai14"=>$request->nilai14, "nilai15"=>$request->nilai15, "nilai16"=>$request->nilai16, "nilai17"=>$request->nilai17, "nilai18"=>$request->nilai18, "nilai19"=>$request->nilai19, "nilai20"=>$request->nilai20,
                 "nilai21"=>$request->nilai21, "nilai22"=>$request->nilai22, "nilai23"=>$request->nilai23, "nilai24"=>$request->nilai24, "nilai25"=>$request->nilai25, "nilai26"=>$request->nilai26, "nilai27"=>$request->nilai27, "nilai28"=>$request->nilai28, "nilai29"=>$request->nilai29, "nilai30"=>$request->nilai30,
                 "nilai31"=>$request->nilai31, "nilai32"=>$request->nilai32, "nilai33"=>$request->nilai33, "nilai34"=>$request->nilai34, "nilai35"=>$request->nilai35, "nilai36"=>$request->nilai36, "nilai37"=>$request->nilai37, "nilai38"=>$request->nilai38, "nilai39"=>$request->nilai39, "nilai40"=>$request->nilai40,
                 "nilai41"=>$request->nilai41, "nilai42"=>$request->nilai42, "nilai43"=>$request->nilai43, "nilai44"=>$request->nilai44, "nilai45"=>$request->nilai45, "nilai46"=>$request->nilai46, "nilai47"=>$request->nilai47, "nilai48"=>$request->nilai48, "nilai49"=>$request->nilai49, "nilai50"=>$request->nilai50,
+                "nilai51"=>$request->nilai51, "nilai52"=>$request->nilai52, "nilai53"=>$request->nilai53, "nilai54"=>$request->nilai54, "nilai55"=>$request->nilai55, "nilai56"=>$request->nilai56, "nilai57"=>$request->nilai57, "nilai58"=>$request->nilai58, "nilai59"=>$request->nilai59, "nilai60"=>$request->nilai60,
                  ]);
-
         }
         else{
             parameter::insert([
@@ -332,11 +354,13 @@ class OrganoleptikController extends Controller
                 "parameter21"=>$request->parameter21, "parameter22"=>$request->parameter22, "parameter23"=>$request->parameter23, "parameter24"=>$request->parameter24, "parameter25"=>$request->parameter25, "parameter26"=>$request->parameter26, "parameter27"=>$request->parameter27, "parameter28"=>$request->parameter28, "parameter29"=>$request->parameter29, "parameter30"=>$request->parameter30,
                 "parameter31"=>$request->parameter31, "parameter32"=>$request->parameter32, "parameter33"=>$request->parameter33, "parameter34"=>$request->parameter34, "parameter35"=>$request->parameter35, "parameter36"=>$request->parameter36, "parameter37"=>$request->parameter37, "parameter38"=>$request->parameter38, "parameter39"=>$request->parameter39, "parameter40"=>$request->parameter40,
                 "parameter41"=>$request->parameter41, "parameter42"=>$request->parameter42, "parameter43"=>$request->parameter43, "parameter44"=>$request->parameter44, "parameter45"=>$request->parameter45, "parameter46"=>$request->parameter46, "parameter47"=>$request->parameter47, "parameter48"=>$request->parameter48, "parameter49"=>$request->parameter49, "parameter50"=>$request->parameter50,
+                "parameter51"=>$request->parameter51, "parameter52"=>$request->parameter52, "parameter53"=>$request->parameter53, "parameter54"=>$request->parameter54, "parameter55"=>$request->parameter55, "parameter56"=>$request->parameter56, "parameter57"=>$request->parameter57, "parameter58"=>$request->parameter58, "parameter59"=>$request->parameter59, "parameter60"=>$request->parameter60,
                 "nilai1"=>$request->nilai1, "nilai2"=>$request->nilai2, "nilai3"=>$request->nilai3, "nilai4"=>$request->nilai4, "nilai5"=>$request->nilai5, "nilai6"=>$request->nilai6, "nilai7"=>$request->nilai7, "nilai8"=>$request->nilai8, "nilai9"=>$request->nilai9, "nilai10"=>$request->nilai10,
                 "nilai11"=>$request->nilai11, "nilai12"=>$request->nilai12, "nilai13"=>$request->nilai13, "nilai14"=>$request->nilai14, "nilai15"=>$request->nilai15, "nilai16"=>$request->nilai16, "nilai17"=>$request->nilai17, "nilai18"=>$request->nilai18, "nilai19"=>$request->nilai19, "nilai20"=>$request->nilai20,
                 "nilai21"=>$request->nilai21, "nilai22"=>$request->nilai22, "nilai23"=>$request->nilai23, "nilai24"=>$request->nilai24, "nilai25"=>$request->nilai25, "nilai26"=>$request->nilai26, "nilai27"=>$request->nilai27, "nilai28"=>$request->nilai28, "nilai29"=>$request->nilai29, "nilai30"=>$request->nilai30,
                 "nilai31"=>$request->nilai31, "nilai32"=>$request->nilai32, "nilai33"=>$request->nilai33, "nilai34"=>$request->nilai34, "nilai35"=>$request->nilai35, "nilai36"=>$request->nilai36, "nilai37"=>$request->nilai37, "nilai38"=>$request->nilai38, "nilai39"=>$request->nilai39, "nilai40"=>$request->nilai40,
                 "nilai41"=>$request->nilai41, "nilai42"=>$request->nilai42, "nilai43"=>$request->nilai43, "nilai44"=>$request->nilai44, "nilai45"=>$request->nilai45, "nilai46"=>$request->nilai46, "nilai47"=>$request->nilai47, "nilai48"=>$request->nilai48, "nilai49"=>$request->nilai49, "nilai50"=>$request->nilai50,
+                "nilai51"=>$request->nilai51, "nilai52"=>$request->nilai52, "nilai53"=>$request->nilai53, "nilai54"=>$request->nilai54, "nilai55"=>$request->nilai55, "nilai56"=>$request->nilai56, "nilai57"=>$request->nilai57, "nilai58"=>$request->nilai58, "nilai59"=>$request->nilai59, "nilai60"=>$request->nilai60,
             ]);
         }
         return redirect('/admin/organoleptik')->with('berhasilSimpan','Data berhasil disimpan');

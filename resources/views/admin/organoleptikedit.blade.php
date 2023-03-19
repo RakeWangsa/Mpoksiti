@@ -39,7 +39,11 @@
             <h6>Nama Perusahaan : </h6>
             <h6>Tanggal : </h6>
             <h6>No PPK/No Pengajuan : </h6>
-            <h6>Jenis Contoh : {{ $jenis }}</h6>
+            <div class="d-flex align-items-center">
+              <h6 class="mr-2">Jenis Contoh :</h6>
+              <input type="text" name="jenis"  @if(isset($jenis)) value="{{ $jenis }}" @endif>
+            </div>
+            
         </div>
         
         <style type="text/css">
