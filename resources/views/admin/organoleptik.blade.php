@@ -229,22 +229,16 @@
           <table class="tableizer-table">
             <thead><tr class="tableizer-firstrow"><th class="text-center">Spesifikasi</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>Nilai</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody>
              <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
-             <tr><td>{{ $parameter[0]->parameter1 }}</td><td>{{ $parameter[0]->nilai1 }}</td>@if (isset($parameter[0]->nilai1)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A9{{$i}}" @if (isset($check)) @if($check[0]->{"A9".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
-             <tr><td>{{ $parameter[0]->parameter2 }}</td><td>{{ $parameter[0]->nilai2 }}</td>@if (isset($parameter[0]->nilai2)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A8{{$i}}" @if (isset($check)) @if($check[0]->{"A8".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
-             <tr><td>{{ $parameter[0]->parameter3 }}</td><td>{{ $parameter[0]->nilai3 }}</td>@if (isset($parameter[0]->nilai3)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A7{{$i}}" @if (isset($check)) @if($check[0]->{"A7".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
-             <tr><td>{{ $parameter[0]->parameter4 }}</td><td>{{ $parameter[0]->nilai4 }}</td>@if (isset($parameter[0]->nilai4)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A6{{$i}}" @if (isset($check)) @if($check[0]->{"A6".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
-             <tr><td>{{ $parameter[0]->parameter5 }}</td><td>{{ $parameter[0]->nilai5 }}</td>@if (isset($parameter[0]->nilai5)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A5{{$i}}" @if (isset($check)) @if($check[0]->{"A5".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
-             <tr><td>{{ $parameter[0]->parameter6 }}</td><td>{{ $parameter[0]->nilai6 }}</td>@if (isset($parameter[0]->nilai6)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A3{{$i}}" @if (isset($check)) @if($check[0]->{"A3".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
-             <tr><td>{{ $parameter[0]->parameter7 }}</td><td>{{ $parameter[0]->nilai7 }}</td>@if (isset($parameter[0]->nilai7)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A1{{$i}}" @if (isset($check)) @if($check[0]->{"A1".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
-             <tr><td>{{ $parameter[0]->parameter8 }}</td><td>{{ $parameter[0]->nilai8 }}</td>@if (isset($parameter[0]->nilai8)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="A1{{$i}}" @if (isset($check)) @if($check[0]->{"A1".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
-             <tr><td>{{ $parameter[0]->parameter9 }}</td><td>{{ $parameter[0]->nilai9 }}</td>@if (isset($parameter[0]->nilai9)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B9{{$i}}" @if (isset($check)) @if($check[0]->{"B9".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
-             <tr><td>{{ $parameter[0]->parameter10 }}</td><td>{{ $parameter[0]->nilai10 }}</td>@if (isset($parameter[0]->nilai10)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="B8{{$i}}" @if (isset($check)) @if($check[0]->{"B8".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
-             
+             @for ($table = 1; $table <= $jumlah; $table++)
+             @php $parameter_value = "parameter" . $table; @endphp
+             @php $nilai_value = "nilai" . $table; @endphp
+             <tr><td>{{ $parameter[0]->$parameter_value }}</td><td>{{ $parameter[0]->$nilai_value }}</td>@if (isset($parameter[0]->$nilai_value)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="a{{$table}}x{{$i}}" @if (isset($check1)) @if($check1[0]->{"a".$table."x".$i}) checked @endif @elseif(isset($check2)) @if($check2[0]->{"a".$table."x".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
+             @endfor
             </tbody></table>
   
         @endif
         <label class="mt-2">Petugas Karantina,</label>
-        <input type="text" name="petugas" @if(isset($check))value="{{$check[0]->petugas}}" @endif required>
+        <input type="text" name="petugas" @if(isset($check1))value="{{$check1[0]->petugas}}" @endif required>
         <div class="text-left">
           <a class="btn btn-danger mt-4 mr-2" href="{{route('admin.resetOrganoleptik', ['id_ppk' => $header[0]->id_ppk,'jenis'=>$jenis])}}" id="reset-btn">Reset</a>
           <button type="submit" class="btn btn-secondary mt-4" style="background-color:#104E8B">Save</button>

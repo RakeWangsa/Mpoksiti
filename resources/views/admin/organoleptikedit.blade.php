@@ -70,7 +70,7 @@
          @for ($table = 1; $table <= 50; $table++)
          @php $parameter_value = "parameter" . $table; @endphp
          @php $nilai_value = "nilai" . $table; @endphp
-         <tr><td><input type="text" name="{{ $parameter_value }}" size="75" @if(isset($parameter[0]->$parameter_value)) value="{{$parameter[0]->$parameter_value}}" @endif></td><td><input type="text" name="{{ $nilai_value }}" @if(isset($parameter[0]->$nilai_value)) value="{{$parameter[0]->$nilai_value}}" @endif size="1" pattern="[1-9]{1}"></td>@for ($i = 1; $i <= 24; $i++)<td></td>@endfor</tr>
+         <tr><td><input type="text" name="{{ $parameter_value }}" size="75" @if(isset($parameter[0]->$parameter_value)) value="{{$parameter[0]->$parameter_value}}" @endif></td><td><input type="text" name="{{ $nilai_value }}" @if(isset($parameter[0]->$nilai_value)) value="{{$parameter[0]->$nilai_value}}" @endif size="1" pattern="[1-9]{1}" title="Input harus berupa angka 1-9"></td>@for ($i = 1; $i <= 24; $i++)<td></td>@endfor</tr>
          @endfor
         </tbody></table>
         
