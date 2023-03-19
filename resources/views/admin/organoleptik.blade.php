@@ -232,8 +232,29 @@
              @for ($table = 1; $table <= $jumlah; $table++)
              @php $parameter_value = "parameter" . $table; @endphp
              @php $nilai_value = "nilai" . $table; @endphp
-             <tr><td>{{ $parameter[0]->$parameter_value }}</td><td>{{ $parameter[0]->$nilai_value }}</td>@if (isset($parameter[0]->$nilai_value)) @for ($i = 1; $i <= 24; $i++)<td><input type="checkbox" name="a{{$table}}x{{$i}}" @if (isset($check1)) @if($check1[0]->{"a".$table."x".$i}) checked @endif @elseif(isset($check2)) @if($check2[0]->{"a".$table."x".$i}) checked @endif @endif></td>@endfor @else @for ($i = 1; $i <= 24; $i++)<td></td>@endfor @endif</tr>
-             @endfor
+             <tr>
+              <td>{{ $parameter[0]->$parameter_value }}</td>
+              <td>{{ $parameter[0]->$nilai_value }}</td>
+              @if (isset($parameter[0]->$nilai_value))
+                @for ($i = 1; $i <= 24; $i++)<td>
+                  <input type="checkbox" name="a{{$table}}x{{$i}}"
+
+                  @if ($table<=30)
+                    @if (isset($check1))
+                      @if($check1[0]->{"a".$table."x".$i}) checked @endif
+                    @endif
+                  @else
+                    @if(isset($check2)) 
+                      @if($check2[0]->{"a".$table."x".$i}) checked @endif
+                    @endif
+                  @endif
+                  ></td>
+                @endfor
+              @else
+                @for ($i = 1; $i <= 24; $i++)<td></td>@endfor
+              @endif</tr>
+            
+            @endfor
             </tbody></table>
   
         @endif
