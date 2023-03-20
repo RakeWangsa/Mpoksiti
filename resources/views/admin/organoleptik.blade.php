@@ -52,7 +52,12 @@
           Pilih Jenis
         </a>  
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Daging Rajungan Pasteu'])}}">Daging Rajungan Pasteu</a></li>
+          @if(isset($jenisform))
+            @foreach($jenisform as $jnsform)
+            <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>$jnsform->jenis])}}">{{ $jnsform->jenis }}</a></li>
+            @endforeach
+          @endif
+          {{-- <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Daging Rajungan Pasteu'])}}">Daging Rajungan Pasteu</a></li>
           <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Paha Kodok Beku'])}}">Paha Kodok Beku</a></li>
           <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Scallop Beku'])}}">Scallop Beku</a></li>
           <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Daging Kerang Beku'])}}">Daging Kerang Beku</a></li>
@@ -73,7 +78,7 @@
           <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Kerupuk'])}}">Kerupuk</a></li>
           <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Ikan Kering'])}}">Ikan Kering</a></li>
           <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Sur'])}}">Sur</a></li>
-          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Agar Powder'])}}">Agar Powder</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.NilaiOrganoleptik', ['id_ppk' => $id_ppk,'jenis'=>'Agar Powder'])}}">Agar Powder</a></li> --}}
         </ul>
       </div>
       @else
@@ -109,7 +114,7 @@
         <ul class="dropdown-menu">
           @if(isset($jenisform))
             @foreach($jenisform as $jnsform)
-            <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'$jnsform->jenis'])}}">{{ $jnsform->jenis }}</a></li>
+            <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>$jnsform->jenis])}}">{{ $jnsform->jenis }}</a></li>
             @endforeach
           @endif
           <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'baru'])}}">Tambah Jenis Baru</a></li>

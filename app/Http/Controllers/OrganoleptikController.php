@@ -370,12 +370,17 @@ class OrganoleptikController extends Controller
 
         $jenis = request()->segment(4);
 
-        $ada = DB::connection('sqlsrv2')->table('parameter')
+        $ada1 = DB::connection('sqlsrv2')->table('parameter')
+            ->where('jenis',$request->jenis)
+            ->select('*')
+            ->get();
+
+        $ada2 = DB::connection('sqlsrv2')->table('parameter')
             ->where('jenis',$jenis)
             ->select('*')
             ->get();
 
-        if(count($ada) > 0){
+        if(count($ada1) > 0 || count($ada2) > 0){
             parameter::where('jenis', $jenis)->update([
                 "jenis"=>$request->jenis,
                 "parameter1"=>$request->parameter1, "parameter2"=>$request->parameter2, "parameter3"=>$request->parameter3, "parameter4"=>$request->parameter4, "parameter5"=>$request->parameter5, "parameter6"=>$request->parameter6, "parameter7"=>$request->parameter7, "parameter8"=>$request->parameter8, "parameter9"=>$request->parameter9, "parameter10"=>$request->parameter10,
