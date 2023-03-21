@@ -17,10 +17,14 @@ class OrganoleptikController extends Controller
             ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
             ->get();
         $header=NULL;
+        $jenisform= DB::connection('sqlsrv2')->table('parameter')
+        ->select('jenis')
+        ->get();
 
         return view('admin.organoleptik',[
             'title'=>'Organoleptik',
             'list'=>$list,
+            'jenisform'=>$jenisform,
             'header'=>$header
         ]);
     }
@@ -37,6 +41,9 @@ class OrganoleptikController extends Controller
             ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
             ->get();
 
+        $jenisform= DB::connection('sqlsrv2')->table('parameter')
+            ->select('jenis')
+            ->get();
 
         // $check = DB::connection('sqlsrv2')->table('organoleptik')
         //     ->where('id_ppk',$id_ppk)
@@ -50,6 +57,7 @@ class OrganoleptikController extends Controller
             'title'=>'Organoleptik',
             'list'=>$list,
             'header'=>$header,
+            'jenisform'=>$jenisform,
             //'check' => ($check->isNotEmpty()) ? $check : null,
             'id_ppk'=>$id_ppk,
             // 'jenis'=>$jenis
@@ -421,4 +429,11 @@ class OrganoleptikController extends Controller
         return redirect('/admin/organoleptik/edit/'.$jenis)->with('berhasilSimpan','Data berhasil direset');
     }
 
+    public function editHapus(Request $request){
+
+        $jenis = request()->segment(4);
+
+        parameter::where('jenis', $jenis)->delete();
+        return redirect('/admin/organoleptik/')->with('berhasilSimpan','Form berhasil dihapus');
+    }
 }

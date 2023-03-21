@@ -100,6 +100,7 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/admin/organoleptik/edit/{jenis}', [App\Http\Controllers\OrganoleptikController::class, 'edit'])->name('admin.editOrganoleptik');
         Route::get('/admin/organoleptik/edit/{jenis}/submit', [App\Http\Controllers\OrganoleptikController::class, 'editSubmit'])->name('admin.editSubmitOrganoleptik');
         Route::get('/admin/organoleptik/edit/{jenis}/reset', [App\Http\Controllers\OrganoleptikController::class, 'editReset'])->name('admin.editResetOrganoleptik');
+        Route::get('/admin/organoleptik/edit/{jenis}/hapus', [App\Http\Controllers\OrganoleptikController::class, 'editHapus'])->name('admin.editHapusOrganoleptik');
         Route::get('/admin/organoleptik/{id_ppk}', [App\Http\Controllers\OrganoleptikController::class, 'organoleptik'])->name('admin.organoleptiks');
         Route::get('/admin/organoleptik/{id_ppk}/{jenis}', [App\Http\Controllers\OrganoleptikController::class, 'NilaiOrganoleptik'])->name('admin.NilaiOrganoleptik');
         Route::get('/admin/organoleptik/{id_ppk}/{jenis}/submit', [App\Http\Controllers\OrganoleptikController::class, 'submit'])->name('admin.submitOrganoleptik');

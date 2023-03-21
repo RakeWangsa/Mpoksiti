@@ -88,7 +88,8 @@
 
         <label class="mt-2 mb-4">Petugas Karantina,</label>
         <div class="text-left mt-4">
-          <a class="btn btn-danger mt-4 mr-2" href="{{route('admin.editResetOrganoleptik', ['jenis'=>$jenis])}}" id="reset-btn">Reset</a>
+          <a class="btn btn-danger mt-4 mr-2" href="{{route('admin.editHapusOrganoleptik', ['jenis'=>$jenis])}}" id="hapus-btn">Hapus</a>
+          <a class="btn btn-warning mt-4 mr-2" href="{{route('admin.editResetOrganoleptik', ['jenis'=>$jenis])}}" id="reset-btn">Reset</a>
           <button type="submit" class="btn btn-secondary mt-4" style="background-color:#104E8B">Save</button>
         </div>
       </form>
@@ -105,6 +106,12 @@
   document.getElementById("reset-btn").addEventListener("click", function(event){
       event.preventDefault(); // untuk mencegah redirect langsung saat klik link
       if(confirm("Apakah Anda yakin ingin mereset tabel ini?")){
+          window.location.href = this.href; // redirect ke halaman reset jika dikonfirmasi
+      }
+  });
+  document.getElementById("hapus-btn").addEventListener("click", function(event){
+      event.preventDefault(); // untuk mencegah redirect langsung saat klik link
+      if(confirm("Apakah Anda yakin ingin menghapus tabel ini?")){
           window.location.href = this.href; // redirect ke halaman reset jika dikonfirmasi
       }
   });
