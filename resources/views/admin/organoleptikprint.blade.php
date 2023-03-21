@@ -13,7 +13,7 @@
       <div class="card-body" style="margin: top 10px;">
         <div class="mt-2 mb-4">
             <h5 class="text-center mt-4">BALAI BESAR KARANTINA IKAN PENGENDALIAN MUTU DAN KEAMANAN HASIL PERIKANAN JAKARTA I</h5>
-            <h6 class="text-center mb-4">LEMBAR PENILAIAN SENSORI {{ $jenis }} DALAM RANGKA VERIFIKASI LAPANGAN MELALUI REMOTE STUFFING</h6>
+            <h6 class="text-center mb-4">LEMBAR PENILAIAN SENSORI {{ strtoupper($jenis) }} DALAM RANGKA VERIFIKASI LAPANGAN MELALUI REMOTE STUFFING</h6>
 
             <h6 class="mt-4">Nama Perusahaan : {{ $header[0]->nm_trader }} </h6>
             <h6>Tanggal : {{ $header[0]->tgl_ppk }}</h6>
