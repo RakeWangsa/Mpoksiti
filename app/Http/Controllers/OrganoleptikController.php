@@ -402,6 +402,12 @@ class OrganoleptikController extends Controller
                 "nilai31"=>$request->nilai31, "nilai32"=>$request->nilai32, "nilai33"=>$request->nilai33, "nilai34"=>$request->nilai34, "nilai35"=>$request->nilai35, "nilai36"=>$request->nilai36, "nilai37"=>$request->nilai37, "nilai38"=>$request->nilai38, "nilai39"=>$request->nilai39, "nilai40"=>$request->nilai40,
                 "nilai41"=>$request->nilai41, "nilai42"=>$request->nilai42, "nilai43"=>$request->nilai43, "nilai44"=>$request->nilai44, "nilai45"=>$request->nilai45, "nilai46"=>$request->nilai46, "nilai47"=>$request->nilai47, "nilai48"=>$request->nilai48, "nilai49"=>$request->nilai49, "nilai50"=>$request->nilai50,
                  ]);
+            organoleptik1::where('jenis', $jenis)->update([
+                "jenis"=>$request->jenis,
+                 ]);
+            organoleptik2::where('jenis', $jenis)->update([
+                "jenis"=>$request->jenis,
+                 ]);
         }
         else{
             parameter::insert([
