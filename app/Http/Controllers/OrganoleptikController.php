@@ -318,15 +318,7 @@ class OrganoleptikController extends Controller
 
         $id_ppk = request()->segment(3);
         $jenis = request()->segment(4);
-        // $ada = DB::connection('sqlsrv2')->table('organoleptik')
-        //     ->where('id_ppk',$id_ppk)
-        //     ->where('jenis', $jenis)
-        //     ->select('*')
-        //     ->get();
 
-        // if(count($ada) > 0){
-        //     organoleptik::where('id_ppk', $id_ppk)->where('jenis', $jenis)->delete();
-        // }
         $list = DB::connection('sqlsrv2')->table('v_data_header')
             ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
             ->get();
@@ -336,23 +328,52 @@ class OrganoleptikController extends Controller
             ->select('id_ppk', 'no_ppk', 'nm_trader', 'tgl_ppk')
             ->get();
 
+        $jumlah=0;
+        for($i = 1; $i <= 50; $i++) {
+            $hitung = DB::connection('sqlsrv2')->table('parameter')
+                ->where('jenis', $jenis)
+                ->where('parameter'.$i, '!=', NULL)
+                ->select('*')
+                ->get();
+            if(count($hitung) > 0){
+                $jumlah=$i;
+            }
+        }
 
+        $jenisform= DB::connection('sqlsrv2')->table('parameter')
+            ->select('jenis')
+            ->get();
 
-        $check = DB::connection('sqlsrv2')->table('organoleptik')
+        $check1 = DB::connection('sqlsrv2')->table('organoleptik1')
             ->where('id_ppk',$id_ppk)
             ->where('jenis',$jenis)
             ->orderBy('id_ppk','desc')
             ->select('*')
             ->get();
 
+        $check2 = DB::connection('sqlsrv2')->table('organoleptik2')
+            ->where('id_ppk',$id_ppk)
+            ->where('jenis',$jenis)
+            ->orderBy('id_ppk','desc')
+            ->select('*')
+            ->get();
+
+        $parameter = DB::connection('sqlsrv2')->table('parameter')
+        ->where('jenis',$jenis)
+        ->select('*')
+        ->get();
 
         return view('admin.organoleptikprint',[
             'title'=>'Organoleptik',
             'list'=>$list,
             'header'=>$header,
-            'check' => ($check->isNotEmpty()) ? $check : null,
+            'check1' => ($check1->isNotEmpty()) ? $check1 : null,
+            'check2' => ($check2->isNotEmpty()) ? $check2 : null,
             'jenis'=>$jenis,
-            'id_ppk'=>$id_ppk,            
+            'id_ppk'=>$id_ppk,
+            'jumlah'=>$jumlah,
+            'parameter'=>$parameter,
+            'jenisform'=>$jenisform       
         ]);
     }
 
@@ -440,6 +461,8 @@ class OrganoleptikController extends Controller
         $jenis = request()->segment(4);
 
         parameter::where('jenis', $jenis)->delete();
+        organoleptik1::where('jenis', $jenis)->delete();
+        organoleptik2::where('jenis', $jenis)->delete();
         return redirect('/admin/organoleptik/')->with('berhasilSimpan','Form berhasil dihapus');
     }
 }
