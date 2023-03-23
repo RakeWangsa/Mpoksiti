@@ -25,9 +25,10 @@ class StuffingController extends Controller
 {
     public function index(Request $request)
     {
+        $batas=$request->batas;
         $now = now();
         $skrg = $now->format('Y-m-d');
-        $tgl_trak = date('Y-m-d', strtotime($skrg. ' - 25 days'));
+        $tgl_trak = date('Y-m-d', strtotime($skrg. ' - ' .$batas));
         $trader = array();
         foreach (Trader::all() as $item) {
             $trader[$item->id_trader] = $item->nm_trader;
