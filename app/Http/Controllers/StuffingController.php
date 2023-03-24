@@ -25,7 +25,12 @@ class StuffingController extends Controller
 {
     public function index(Request $request)
     {
-        $batas=$request->batas;
+        $batas = DB::connection('sqlsrv2')->table('batas')
+            ->select('hari')
+            ->get();
+        batas::update([
+                "hari"=>$request->updatebatas,
+                 ]);
         $now = now();
         $skrg = $now->format('Y-m-d');
         $tgl_trak = date('Y-m-d', strtotime($skrg. ' - ' .$batas));
