@@ -25,15 +25,17 @@ class StuffingController extends Controller
 {
     public function index(Request $request)
     {
-        $batas = DB::connection('sqlsrv2')->table('batas')
-            ->select('hari')
-            ->get();
-        batas::update([
-                "hari"=>$request->updatebatas,
-                 ]);
+        if (session()->has('batas')) {
+            if(isset($request->batas)){
+                session()->put('batas', $request->batas);
+            }
+        } else {
+            session()->put('batas','5');
+        }
+        $batas = session()->get('batas');
         $now = now();
         $skrg = $now->format('Y-m-d');
-        $tgl_trak = date('Y-m-d', strtotime($skrg. ' - ' .$batas));
+        $tgl_trak = date('Y-m-d', strtotime($skrg. ' - ' .$batas .'days'));
         $trader = array();
         foreach (Trader::all() as $item) {
             $trader[$item->id_trader] = $item->nm_trader;
@@ -85,7 +87,8 @@ class StuffingController extends Controller
             "trader" => $trader,
             "master" => $master,
             "tipe"=> $tipe_data,
-            "pegawai"=> $pegawai
+            "pegawai"=> $pegawai,
+            "batas"=> $batas
         ]);
     }
 

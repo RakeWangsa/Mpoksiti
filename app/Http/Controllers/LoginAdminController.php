@@ -64,6 +64,7 @@ class LoginAdminController extends Controller
             'lokasi' => $checkLocation->city,
             'email' => $email
         ]);
+        session()->flush();
         Auth::guard('admin')->logout();
         return redirect('/loginadmin');
     }
