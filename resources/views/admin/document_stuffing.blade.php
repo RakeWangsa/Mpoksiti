@@ -84,7 +84,7 @@
       <div class="card-footer" style="margin: top 10px;">
         <div class="d-flex justify-content-end">
 
-          <a style="margin: 0 3px" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#declineModal">Tidak Setuju</a>
+          <a style="margin: 0 3px" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#declineModal">Revisi</a>
 
           <!-- Decline Modal -->
           <div class="modal fade" id="declineModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -146,6 +146,7 @@
             </div>
           </div>
           <a style="margin: 0 3px" class="btn btn-sm btn-primary" href="{{route('admin.acceptstuffing', [$ppk->id_ppk])}}">Setuju</a>
+          <a style="margin: 0 3px" class="btn btn-danger" href="#">Onsite</a>
         </div>
       </div>
     </div>
