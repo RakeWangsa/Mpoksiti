@@ -108,6 +108,12 @@ class StuffingController extends Controller
             $kategori[$item->id_kategori] = $item->nama_kategori;
         }
         $masterDokumenModel = new MasterDokumen();
+
+        $nilai = DB::connection('sqlsrv2')->table('kepatuhan')
+            ->where('id_ppk',$id_ppk)
+            ->select('nilai')
+            ->get();
+
         return view('admin.document_stuffing', [
             "title" => "Unggah Dokumen",
             "ppk" => $ppk,
@@ -117,6 +123,7 @@ class StuffingController extends Controller
             "kategoriMaster" => $kategori,
             "masterDokumens" => $this->getMasterDokumen(),
             "id_ppk" => $id_ppk,
+            "nilai" => $nilai
             // "delDokumen"=> $dokumens
         ]);
         // echo json_encode( [
