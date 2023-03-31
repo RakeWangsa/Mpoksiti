@@ -109,8 +109,13 @@ class StuffingController extends Controller
         }
         $masterDokumenModel = new MasterDokumen();
 
-        $nilai = DB::connection('sqlsrv2')->table('kepatuhan')
+        $id_trader = DB::connection('sqlsrv2')->table('v_data_header')
             ->where('id_ppk',$id_ppk)
+            ->pluck('id_trader')
+            ->first();
+
+        $nilai = DB::connection('sqlsrv2')->table('kepatuhan')
+            ->where('id_trader',$id_trader)
             ->pluck('nilai')
             ->first();
 

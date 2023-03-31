@@ -87,7 +87,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Nilai Kepatuhan</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $nilai }}</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ strtoupper($nilai) }}</div>
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@
                                       </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end">
-                                      <button type="submit" class="btn btn-secondary" style="background-color: #3C5C94" name="submit" id="tombol-submit" value="Simpan Data">Submit</button>
+                                      <button type="submit" class="btn btn-secondary" style="background-color: #3C5C94" name="submit" value="Simpan Data">Submit</button>
                                     </div>
                                 </form>
                               </div>
@@ -164,26 +164,44 @@
               </div>
             </div>
           </div>
-          <a style="margin: 0 3px" class="btn btn-primary" href="{{route('admin.acceptstuffing', [$ppk->id_ppk])}}">Setuju</a>
+          @if ($nilai=='rendah')
+            <button type="button" style="margin: 0 3px" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+              Setuju
+            </button>
+            <div class="modal fade" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Peringatan</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    Nilai kepatuhan rendah, silahkan lakukan onsite!
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          @else
+            <a style="margin: 0 3px" class="btn btn-primary" id="setuju" href="{{route('admin.acceptstuffing', [$ppk->id_ppk])}}">Setuju</a>
+          @endif
           <a style="margin: 0 3px" class="btn btn-danger" href="#">Onsite</a>
         </div>
       </div>
     </div>
   </div>
-
+  <script>
+    var myModal = document.getElementById('myModal')
+    var myModalInstance = new bootstrap.Modal(myModal)
+    document.getElementById('myButton').addEventListener('click', function () {
+      myModalInstance.show()
+    })
+  </script>
+  
 
 </main>
-<script>
-  const tombolSubmit = document.getElementById('tombol-submit');
-  
-  tombolSubmit.addEventListener('click', function() {
-    // Memeriksa nilai variabel `$nilai`
-    if (nilai === 'rendah') {
-      // Menampilkan pesan jika nilai rendah
-      alert('Nilai kepatuhan rendah, silahkan lakukan onsite');
-    }
-  });
-  </script>
 @endsection
 
 @push('scripts')
