@@ -111,8 +111,8 @@ class StuffingController extends Controller
 
         $nilai = DB::connection('sqlsrv2')->table('kepatuhan')
             ->where('id_ppk',$id_ppk)
-            ->select('nilai')
-            ->get();
+            ->pluck('nilai')
+            ->first();
 
         return view('admin.document_stuffing', [
             "title" => "Unggah Dokumen",

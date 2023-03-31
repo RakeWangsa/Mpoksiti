@@ -87,7 +87,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Nilai Kepatuhan</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">Rendah</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $nilai }}</div>
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@
                                       </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end">
-                                      <button type="submit" class="btn btn-secondary" style="background-color: #3C5C94" name="submit" value="Simpan Data">Submit</button>
+                                      <button type="submit" class="btn btn-secondary" style="background-color: #3C5C94" name="submit" id="tombol-submit" value="Simpan Data">Submit</button>
                                     </div>
                                 </form>
                               </div>
@@ -173,6 +173,17 @@
 
 
 </main>
+<script>
+  const tombolSubmit = document.getElementById('tombol-submit');
+  
+  tombolSubmit.addEventListener('click', function() {
+    // Memeriksa nilai variabel `$nilai`
+    if (nilai === 'rendah') {
+      // Menampilkan pesan jika nilai rendah
+      alert('Nilai kepatuhan rendah, silahkan lakukan onsite');
+    }
+  });
+  </script>
 @endsection
 
 @push('scripts')
