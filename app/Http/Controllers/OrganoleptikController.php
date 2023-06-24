@@ -9,6 +9,9 @@ use App\Models\organoleptik;
 use App\Models\organoleptik1;
 use App\Models\organoleptik2;
 use App\Models\parameter;
+use Illuminate\Support\Carbon;
+use App\Models\activity_log;
+
 class OrganoleptikController extends Controller
 {
     public function index(Request $request){
@@ -146,6 +149,18 @@ class OrganoleptikController extends Controller
             ->get();
         
             if(count($ada1) > 0){
+                $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+                $mytime = Carbon::now();
+                $email = session()->get('email');
+                $ip = $request->ip();
+                activity_log::insert([
+                    'description' => 'Petugas mengedit penilaian organoleptik dengan id ppk : '.$id_ppk.' dan jenis : '.$jenis,
+                    'created_at' => $mytime,
+                    'ip' => $ip,
+                    'lokasi' => $checkLocation->city,
+                    'email' => $email
+                ]);
+                
             organoleptik1::where('id_ppk', $id_ppk)->where('jenis', $jenis)->update([
                 "petugas"=>$request->petugas,
                 "a1x1"=>$request->a1x1, "a1x2"=>$request->a1x2, "a1x3"=>$request->a1x3, "a1x4"=>$request->a1x4, "a1x5"=>$request->a1x5, "a1x6"=>$request->a1x6, "a1x7"=>$request->a1x7, "a1x8"=>$request->a1x8, "a1x9"=>$request->a1x9, "a1x10"=>$request->a1x10, "a1x11"=>$request->a1x11, "a1x12"=>$request->a1x12, "a1x13"=>$request->a1x13, "a1x14"=>$request->a1x14, "a1x15"=>$request->a1x15, "a1x16"=>$request->a1x16, "a1x17"=>$request->a1x17, "a1x18"=>$request->a1x18, "a1x19"=>$request->a1x19, "a1x20"=>$request->a1x20, "a1x21"=>$request->a1x21, "a1x22"=>$request->a1x22, "a1x23"=>$request->a1x23, "a1x24"=>$request->a1x24,
@@ -182,6 +197,17 @@ class OrganoleptikController extends Controller
 
         }
         else{
+            $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+                $mytime = Carbon::now();
+                $email = session()->get('email');
+                $ip = $request->ip();
+                activity_log::insert([
+                    'description' => 'Petugas melakukan penilaian organoleptik dengan id ppk : '.$id_ppk.' dan jenis : '.$jenis,
+                    'created_at' => $mytime,
+                    'ip' => $ip,
+                    'lokasi' => $checkLocation->city,
+                    'email' => $email
+                ]);
             organoleptik1::insert([
                 "id_ppk"=> $id_ppk,"jenis"=>$jenis, "petugas"=>$request->petugas,
                 "a1x1"=>$request->a1x1, "a1x2"=>$request->a1x2, "a1x3"=>$request->a1x3, "a1x4"=>$request->a1x4, "a1x5"=>$request->a1x5, "a1x6"=>$request->a1x6, "a1x7"=>$request->a1x7, "a1x8"=>$request->a1x8, "a1x9"=>$request->a1x9, "a1x10"=>$request->a1x10, "a1x11"=>$request->a1x11, "a1x12"=>$request->a1x12, "a1x13"=>$request->a1x13, "a1x14"=>$request->a1x14, "a1x15"=>$request->a1x15, "a1x16"=>$request->a1x16, "a1x17"=>$request->a1x17, "a1x18"=>$request->a1x18, "a1x19"=>$request->a1x19, "a1x20"=>$request->a1x20, "a1x21"=>$request->a1x21, "a1x22"=>$request->a1x22, "a1x23"=>$request->a1x23, "a1x24"=>$request->a1x24,
@@ -304,7 +330,17 @@ class OrganoleptikController extends Controller
             ->where('jenis', $jenis)
             ->select('*')
             ->get();
-
+        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+        $mytime = Carbon::now();
+        $email = session()->get('email');
+        $ip = $request->ip();
+        activity_log::insert([
+            'description' => 'Petugas mereset penilaian organoleptik dengan id ppk : '.$id_ppk.' dan jenis : '.$jenis,
+            'created_at' => $mytime,
+            'ip' => $ip,
+            'lokasi' => $checkLocation->city,
+            'email' => $email
+        ]);
         if(count($ada1) > 0){
             organoleptik1::where('id_ppk', $id_ppk)->where('jenis', $jenis)->delete();
         }
@@ -410,6 +446,17 @@ class OrganoleptikController extends Controller
             ->get();
 
         if(count($ada1) > 0 || count($ada2) > 0){
+            $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+            $mytime = Carbon::now();
+            $email = session()->get('email');
+            $ip = $request->ip();
+            activity_log::insert([
+                'description' => 'Admin mengedit form penilaian organoleptik dengan jenis : '.$jenis,
+                'created_at' => $mytime,
+                'ip' => $ip,
+                'lokasi' => $checkLocation->city,
+                'email' => $email
+            ]);
             parameter::where('jenis', $jenis)->update([
                 "jenis"=>$request->jenis,
                 "parameter1"=>$request->parameter1, "parameter2"=>$request->parameter2, "parameter3"=>$request->parameter3, "parameter4"=>$request->parameter4, "parameter5"=>$request->parameter5, "parameter6"=>$request->parameter6, "parameter7"=>$request->parameter7, "parameter8"=>$request->parameter8, "parameter9"=>$request->parameter9, "parameter10"=>$request->parameter10,
@@ -431,6 +478,17 @@ class OrganoleptikController extends Controller
                  ]);
         }
         else{
+            $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+            $mytime = Carbon::now();
+            $email = session()->get('email');
+            $ip = $request->ip();
+            activity_log::insert([
+                'description' => 'Admin membuat form penilaian organoleptik dengan jenis : '.$request->jenis,
+                'created_at' => $mytime,
+                'ip' => $ip,
+                'lokasi' => $checkLocation->city,
+                'email' => $email
+            ]);
             parameter::insert([
                 "jenis"=>$request->jenis,
                 "parameter1"=>$request->parameter1, "parameter2"=>$request->parameter2, "parameter3"=>$request->parameter3, "parameter4"=>$request->parameter4, "parameter5"=>$request->parameter5, "parameter6"=>$request->parameter6, "parameter7"=>$request->parameter7, "parameter8"=>$request->parameter8, "parameter9"=>$request->parameter9, "parameter10"=>$request->parameter10,
@@ -459,7 +517,17 @@ class OrganoleptikController extends Controller
     public function editHapus(Request $request){
 
         $jenis = request()->segment(4);
-
+        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+        $mytime = Carbon::now();
+        $email = session()->get('email');
+        $ip = $request->ip();
+        activity_log::insert([
+            'description' => 'Admin menghapus form penilaian organoleptik dengan jenis : '.$jenis,
+            'created_at' => $mytime,
+            'ip' => $ip,
+            'lokasi' => $checkLocation->city,
+            'email' => $email
+        ]);
         parameter::where('jenis', $jenis)->delete();
         organoleptik1::where('jenis', $jenis)->delete();
         organoleptik2::where('jenis', $jenis)->delete();

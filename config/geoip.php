@@ -148,7 +148,7 @@ return [
     */
 
     'default_location' => [
-        'ip' => '127.0.0.0',
+        'ip' => '127.0.0.1',
         'iso_code' => 'IDN',
         'country' => 'Indonesia',
         'city' => 'Semarang',

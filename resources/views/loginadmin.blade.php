@@ -34,14 +34,14 @@
                                         <input type="password" class="form-control form-control-admin" name="password" placeholder="{{ __('Password') }}" required>
                                     </div>
 
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
                                             <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                             <label class="custom-control-label" for="remember">Remember Me</label>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="form-group">
+                                    <div class="form-group mt-4">
                                         <button type="submit" class="btn btn-primary btn-admin btn-block">
                                             Login
                                         </button>

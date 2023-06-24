@@ -300,11 +300,12 @@ class StuffingController extends Controller
         // 
         $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
         $mytime = Carbon::now();
+        $ip = $request->ip();
         $email = session()->get('email');
         activity_log::insert([
             'description' => 'admin menerima pengajuan jadwal dengan id ppk : '.$id_ppk,
             'created_at' => $mytime,
-            'ip' => $checkLocation->ip,
+            'ip' => $ip,
             'lokasi' => $checkLocation->city,
             'email' => $email
         ]);
@@ -363,11 +364,12 @@ class StuffingController extends Controller
 
         $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
         $mytime = Carbon::now();
+        $ip = $request->ip();
         $email = session()->get('email');
         activity_log::insert([
             'description' => 'admin merevisi jadwal dengan id ppk : '.$id_ppk,
             'created_at' => $mytime,
-            'ip' => $checkLocation->ip,
+            'ip' => $ip,
             'lokasi' => $checkLocation->city,
             'email' => $email
         ]);
@@ -424,6 +426,7 @@ class StuffingController extends Controller
 
         $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
         $mytime = Carbon::now();
+        $ip = $request->ip();
         $email = session()->get('email');
         activity_log::insert([
             'description' => 'admin menolak pengajuan jadwal dengan id ppk : '.$id_ppk,

@@ -37,12 +37,13 @@ class LoginAdminController extends Controller
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
             $mytime = Carbon::now();
+            $ip = $request->ip();
             //$settings = $request->email;
             //activity()->causedBy(Auth::user())->log('admin melakukan login | ip : '.$checkLocation->ip.' | location : '.$checkLocation->city);
             activity_log::insert([
                 'description' => 'admin melakukan login',
                 'created_at' => $mytime,
-                'ip' => $checkLocation->ip,
+                'ip' => $ip,
                 'lokasi' => $checkLocation->city,
                 'email' => $request->email
             ]);
@@ -51,16 +52,17 @@ class LoginAdminController extends Controller
         return back()->with('error', 'Email atau Password Salah!');
     }
 
-    public function logoutadmin()
+    public function logoutadmin(Request $request)
     {
         $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
         $mytime = Carbon::now();
         $email = session()->get('email');
+        $ip = $request->ip();
         //activity()->causedBy(Auth::user())->log('admin melakukan login | ip : '.$checkLocation->ip.' | location : '.$checkLocation->city);
         activity_log::insert([
             'description' => 'admin melakukan logout',
             'created_at' => $mytime,
-            'ip' => $checkLocation->ip,
+            'ip' => $ip,
             'lokasi' => $checkLocation->city,
             'email' => $email
         ]);
