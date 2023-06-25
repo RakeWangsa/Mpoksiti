@@ -95,18 +95,19 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/admin/subform/EditSubform/{id_masterSubform}', [App\Http\Controllers\SubformController::class, 'editSubform'])->name('admin.editSubform');
         Route::post('/admin/subform/EditSubform/{id_masterSubform}/update', [App\Http\Controllers\SubformController::class, 'updateSubform'])->name('admin.updateSubform');
         
-        //Organoleptik
+        //Penilaian Organoleptik
         Route::get('/admin/organoleptik/', [App\Http\Controllers\OrganoleptikController::class, 'index'])->name('admin.organoleptik');
-        Route::get('/admin/organoleptik/edit/{jenis}', [App\Http\Controllers\OrganoleptikController::class, 'edit'])->name('admin.editOrganoleptik');
-        Route::get('/admin/organoleptik/edit/{jenis}/submit', [App\Http\Controllers\OrganoleptikController::class, 'editSubmit'])->name('admin.editSubmitOrganoleptik');
-        Route::get('/admin/organoleptik/edit/{jenis}/reset', [App\Http\Controllers\OrganoleptikController::class, 'editReset'])->name('admin.editResetOrganoleptik');
-        Route::get('/admin/organoleptik/edit/{jenis}/hapus', [App\Http\Controllers\OrganoleptikController::class, 'editHapus'])->name('admin.editHapusOrganoleptik');
         Route::get('/admin/organoleptik/{id_ppk}', [App\Http\Controllers\OrganoleptikController::class, 'organoleptik'])->name('admin.organoleptiks');
         Route::get('/admin/organoleptik/{id_ppk}/{jenis}', [App\Http\Controllers\OrganoleptikController::class, 'NilaiOrganoleptik'])->name('admin.NilaiOrganoleptik');
         Route::get('/admin/organoleptik/{id_ppk}/{jenis}/submit', [App\Http\Controllers\OrganoleptikController::class, 'submit'])->name('admin.submitOrganoleptik');
         Route::get('/admin/organoleptik/{id_ppk}/{jenis}/reset', [App\Http\Controllers\OrganoleptikController::class, 'reset'])->name('admin.resetOrganoleptik');
         Route::get('/admin/organoleptik/{id_ppk}/{jenis}/print', [App\Http\Controllers\OrganoleptikController::class, 'print'])->name('admin.printOrganoleptik');
-        
+
+        //Form Organoleptik
+        Route::get('/admin/organoleptik/edit/{jenis}', [App\Http\Controllers\OrganoleptikController::class, 'edit'])->name('admin.editOrganoleptik');
+        Route::get('/admin/organoleptik/edit/{jenis}/submit', [App\Http\Controllers\OrganoleptikController::class, 'editSubmit'])->name('admin.editSubmitOrganoleptik');
+        Route::get('/admin/organoleptik/edit/{jenis}/reset', [App\Http\Controllers\OrganoleptikController::class, 'editReset'])->name('admin.editResetOrganoleptik');
+        Route::get('/admin/organoleptik/edit/{jenis}/hapus', [App\Http\Controllers\OrganoleptikController::class, 'editHapus'])->name('admin.editHapusOrganoleptik');
 
         //Pemeriksaan Klinis
         Route::get('/admin/pemeriksaan_klinis', [App\Http\Controllers\AdminPKController::class, 'index'])->name('admin.PK-pemeriksaan_klinis');

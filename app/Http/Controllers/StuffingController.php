@@ -446,7 +446,6 @@ class StuffingController extends Controller
             'required' => ':attribute wajib diisi ',
             'no_izin.required' => 'Nomor izin wajib diisi ',
             'tgl_izin.required' => 'Tanggal izin wajib diisi ',
-            'required' => ':attribute wajib diisi ',
             'min' => ':attribute harus diisi minimal :min karakter !!!',
             'max' => ':attribute harus diisi maksimal :max karakter !!!',
             'numeric' => ':attribute harus diisi angka !!!',

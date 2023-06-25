@@ -45,67 +45,25 @@
             <div class="sidebar-brand-text mx-3" style="font-size:28px">Mpok Siti</div>
         </a>
 
-        <!-- Nav Item - Management User -->
-        <li class="nav-item">
-            <a class="nav-link {{ $title==='Management'? 'active' : '' }}" href="{{ route('admin.manage') }}">
-            <i class="fas fa-fw fa-user-circle {{ $title==='Management'? 'active' : '' }}"></i>
-                <span>Management User</span></a>
-        </li>
+        @php
+            $role = session('role');
+        @endphp
 
-        <li class="nav-item">
-            <a class="nav-link collapsed {{ ($title==='Menu'||$title==='Publikasi')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#MobilecollapsePages" aria-expanded="false" aria-controls="MobilecollapsePages">
-                <i class="fas fa-fw fa-mobile"></i>
-                <span>Mobile</span>
-            </a>
-            <div id="MobilecollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <style>
-                        .collapse-item.active {
-                        color: #3C5C94;
-                        /* background-color: rgba(196, 196, 196, 0.3); */
-                        font-weight: bold;
-                        }
-                        </style>
-                    <a class="collapse-item {{ $title==='Menu'? 'active' : '' }}" href="{{ route('admin.menu') }}">Menu</a>
-                    <a class="collapse-item {{ $title==='Publikasi'? 'active' : '' }}" href="{{ route('admin.publikasi') }}">Publikasi</a>
-                </div>
-            </div>
-        </li>
+        @if ($role === 'Admin')
+            {{-- Tampilkan konten khusus untuk admin --}}
+            <!-- Nav Item - Management User -->
+            <li class="nav-item">
+                <a class="nav-link {{ $title==='Management'? 'active' : '' }}" href="{{ route('admin.manage') }}">
+                <i class="fas fa-fw fa-user-circle {{ $title==='Management'? 'active' : '' }}"></i>
+                    <span>Management User</span></a>
+            </li>
 
-        <!-- Nav Item - Pemeriksaan Klinis Virtual-->
-        <li class="nav-item">
-            <a class="nav-link {{ $title==='PKVirtual'? 'active' : '' }}" href="{{ route('admin.PK-pemeriksaan_klinis') }}">
-            <i class="fas fa-fw fa-file-medical"></i>
-            <span>Pemeriksaan Klinis</span></a>
-        </li>
-
-
-        <li class="nav-item">
-            <a class="nav-link collapsed {{ ($title==='PKJasper'||$title==='PKKurir')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#JPPcollapsePages" aria-expanded="false" aria-controls="JPPcollapsePages">
-                <i class="fas fa-fw fa-shipping-fast"></i>
-                <span>Management Jasper</span>
-            </a>
-            <div id="JPPcollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <style>
-                        .collapse-item.active {
-                        color: #3C5C94;
-                        /* background-color: rgba(196, 196, 196, 0.3); */
-                        font-weight: bold;
-                        }
-                        </style>
-                    <a class="collapse-item {{ $title==='PKJasper'? 'active' : '' }}" href="{{ route('admin.PK-jasper_management') }}">Konter Jasa Pengiriman</a>
-                    <a class="collapse-item {{ $title==='PKKurir'? 'active' : '' }}" href="{{ route('admin.PK-kurir_management') }}">Jenis Kurir</a>
-                </div>
-            </div>
-        </li>
-        <!-- Nav Item - PPK EKSPOR -->
-        <li class="nav-item">
-                <a class="nav-link collapsed {{ ($title==='Stuffing'||$title==='Master Dokumen Trader' || $title==='Kategori Dokumen' || $title==='Master Subform'|| $title==='Organoleptik')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-map-signs"></i>
-                    <span>Ekspor</span>
+            <li class="nav-item">
+                <a class="nav-link collapsed {{ ($title==='Menu'||$title==='Publikasi')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#MobilecollapsePages" aria-expanded="false" aria-controls="MobilecollapsePages">
+                    <i class="fas fa-fw fa-mobile"></i>
+                    <span>Mobile</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="MobilecollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <style>
                             .collapse-item.active {
@@ -114,22 +72,26 @@
                             font-weight: bold;
                             }
                             </style>
-                        <h6 class="collapse-header">Bagian Ekspor:</h6>
-                        <a class="collapse-item {{ $title==='Stuffing'? 'active' : '' }}" href="{{route('admin.stuffing')}}">Stuffing</a>
-                        <a class="collapse-item {{ $title==='Master Dokumen Trader'? 'active' : '' }}" href="{{route('admin.master_dokumen_trader')}}">Master Dokumen Trader</a>
-                        <a class="collapse-item {{ $title==='Kategori Dokumen'? 'active' : '' }}" href="{{route('admin.kategori_dokumen')}}">Kategori Dokumen</a>
-                        <a class="collapse-item {{ $title==='Master Subform'? 'active' : '' }}" href="{{route('admin.master_subform')}}">Master Subform</a>
-                        <a class="collapse-item {{ $title==='Organoleptik'? 'active' : '' }}" href="{{route('admin.organoleptik')}}">Organoleptik</a>
+                        <a class="collapse-item {{ $title==='Menu'? 'active' : '' }}" href="{{ route('admin.menu') }}">Menu</a>
+                        <a class="collapse-item {{ $title==='Publikasi'? 'active' : '' }}" href="{{ route('admin.publikasi') }}">Publikasi</a>
                     </div>
                 </div>
-        </li>
+            </li>
 
-        <li class="nav-item">
-                <a class="nav-link collapsed {{ ($title==='Chatbot Command'||$title==='Chatbot Admin')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#chatbotCollapsePages" aria-expanded="false" aria-controls="chatbotCollapsePages">
-                    <i class="fas fa-fw fa-robot"></i>
-                    <span>Chatbot</span>
+            <!-- Nav Item - Pemeriksaan Klinis Virtual-->
+            {{-- <li class="nav-item">
+                <a class="nav-link {{ $title==='PKVirtual'? 'active' : '' }}" href="{{ route('admin.PK-pemeriksaan_klinis') }}">
+                <i class="fas fa-fw fa-file-medical"></i>
+                <span>Pemeriksaan Klinis</span></a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed {{ ($title==='PKJasper'||$title==='PKKurir')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#JPPcollapsePages" aria-expanded="false" aria-controls="JPPcollapsePages">
+                    <i class="fas fa-fw fa-shipping-fast"></i>
+                    <span>Management Jasper</span>
                 </a>
-                <div id="chatbotCollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="JPPcollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <style>
                             .collapse-item.active {
@@ -138,94 +100,323 @@
                             font-weight: bold;
                             }
                             </style>
-                        <h6 class="collapse-header">Pengelolaan Chatbot:</h6>
-                        {{-- href="{{route('admin.master_subform')}}" --}}
-                        <a class="collapse-item {{ $title==='Chatbot Command'? 'active' : '' }}" href="{{route('admin.tabelCommand')}}">Command Chatbot</a>
-                        <a class="collapse-item {{ $title==='Chatbot Admin'? 'active' : '' }}" href="{{route('admin.tabelDaftarAdmin')}}">Admin Chatbot</a>
+                        <a class="collapse-item {{ $title==='PKJasper'? 'active' : '' }}" href="{{ route('admin.PK-jasper_management') }}">Konter Jasa Pengiriman</a>
+                        <a class="collapse-item {{ $title==='PKKurir'? 'active' : '' }}" href="{{ route('admin.PK-kurir_management') }}">Jenis Kurir</a>
+                    </div>
+                </div>
+            </li> --}}
+            <!-- Nav Item - PPK EKSPOR -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed {{ ($title==='Stuffing'||$title==='Master Dokumen Trader' || $title==='Kategori Dokumen' || $title==='Master Subform'|| $title==='Organoleptik')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-map-signs"></i>
+                        <span>Ekspor</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <style>
+                                .collapse-item.active {
+                                color: #3C5C94;
+                                /* background-color: rgba(196, 196, 196, 0.3); */
+                                font-weight: bold;
+                                }
+                                </style>
+                            <h6 class="collapse-header">Bagian Ekspor:</h6>
+                            <a class="collapse-item {{ $title==='Stuffing'? 'active' : '' }}" href="{{route('admin.stuffing')}}">Stuffing</a>
+                            <a class="collapse-item {{ $title==='Master Dokumen Trader'? 'active' : '' }}" href="{{route('admin.master_dokumen_trader')}}">Master Dokumen Trader</a>
+                            <a class="collapse-item {{ $title==='Kategori Dokumen'? 'active' : '' }}" href="{{route('admin.kategori_dokumen')}}">Kategori Dokumen</a>
+                            <a class="collapse-item {{ $title==='Master Subform'? 'active' : '' }}" href="{{route('admin.master_subform')}}">Master Subform</a>
+                            <a class="collapse-item {{ $title==='Organoleptik'? 'active' : '' }}" href="{{route('admin.organoleptik')}}">Organoleptik</a>
+                        </div>
+                    </div>
+            </li>
+
+            <li class="nav-item">
+                    <a class="nav-link collapsed {{ ($title==='Chatbot Command'||$title==='Chatbot Admin')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#chatbotCollapsePages" aria-expanded="false" aria-controls="chatbotCollapsePages">
+                        <i class="fas fa-fw fa-robot"></i>
+                        <span>Chatbot</span>
+                    </a>
+                    <div id="chatbotCollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <style>
+                                .collapse-item.active {
+                                color: #3C5C94;
+                                /* background-color: rgba(196, 196, 196, 0.3); */
+                                font-weight: bold;
+                                }
+                                </style>
+                            <h6 class="collapse-header">Pengelolaan Chatbot:</h6>
+                            {{-- href="{{route('admin.master_subform')}}" --}}
+                            <a class="collapse-item {{ $title==='Chatbot Command'? 'active' : '' }}" href="{{route('admin.tabelCommand')}}">Command Chatbot</a>
+                            <a class="collapse-item {{ $title==='Chatbot Admin'? 'active' : '' }}" href="{{route('admin.tabelDaftarAdmin')}}">Admin Chatbot</a>
+                            
+                        </div>
+                    </div>
+            </li>
+            {{-- <li class="nav-item">
+                <a class="nav-link {{ $title==='ActivityLog'? 'active' : '' }}" href="{{ route('admin.log') }}">
+                <i class="fas fa-fw fa-user-circle {{ $title==='ActivityLog'? 'active' : '' }}"></i>
+                    <span>Activity Logs</span></a>
+            </li> --}}
+
+            <li class="nav-item">
+                <a class="nav-link collapsed {{ ($title==='ActivityLog'||$title==='ActivityLogTraders')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#LogCollapsePages" aria-expanded="false" aria-controls="LogCollapsePages">
+                    <i class="fas fa-fw fa-eye"></i>
+                    <span>Activity Logs</span>
+                </a>
+                <div id="LogCollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <style>
+                            .collapse-item.active {
+                            color: #3C5C94;
+                            /* background-color: rgba(196, 196, 196, 0.3); */
+                            font-weight: bold;
+                            }
+                            </style>
+                        <h6 class="collapse-header">Pilih Activity Logs:</h6>
+                        <a class="collapse-item {{ $title==='ActivityLog'? 'active' : '' }}" href="{{route('admin.log')}}">Activity Log Admin</a>
+                        <a class="collapse-item {{ $title==='ActivityLogTraders'? 'active' : '' }}" href="{{route('admin.logTraders')}}">Activity Log Traders</a>
                         
                     </div>
                 </div>
-        </li>
-        {{-- <li class="nav-item">
-            <a class="nav-link {{ $title==='ActivityLog'? 'active' : '' }}" href="{{ route('admin.log') }}">
-            <i class="fas fa-fw fa-user-circle {{ $title==='ActivityLog'? 'active' : '' }}"></i>
-                <span>Activity Logs</span></a>
-        </li> --}}
-
-        <li class="nav-item">
-            <a class="nav-link collapsed {{ ($title==='ActivityLog'||$title==='ActivityLogTraders')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#LogCollapsePages" aria-expanded="false" aria-controls="LogCollapsePages">
-                <i class="fas fa-fw fa-eye"></i>
-                <span>Activity Logs</span>
-            </a>
-            <div id="LogCollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <style>
-                        .collapse-item.active {
-                        color: #3C5C94;
-                        /* background-color: rgba(196, 196, 196, 0.3); */
-                        font-weight: bold;
-                        }
-                        </style>
-                    <h6 class="collapse-header">Pilih Activity Logs:</h6>
-                    <a class="collapse-item {{ $title==='ActivityLog'? 'active' : '' }}" href="{{route('admin.log')}}">Activity Log Admin</a>
-                    <a class="collapse-item {{ $title==='ActivityLogTraders'? 'active' : '' }}" href="{{route('admin.logTraders')}}">Activity Log Traders</a>
-                    
+            </li>
+            <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
-            </div>
-    </li>
-        <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-    </ul>
-    <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-        <!-- Main Content -->
-        <div id="content">
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow ">
-            <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-            </button>
-            <!-- Topbar Navbar -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Nav Item - User Information -->
-                <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <figure class="mr-3 img-profile rounded-circle avatar font-weight-bold" data-initial="{{ strtoupper(Auth::user()->email[0]) }}"></figure>
-                            <span class="mr-3 d-none d-lg-inline" style="color:#2E2A61;font-weight:bold;font-size:18px">{{ Auth::user()->email }}</span>
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{ route('logoutadmin') }}" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
             </ul>
-            </nav>
-            <!-- End of Topbar -->
+            <!-- End of Sidebar -->
 
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
 
-            @yield('content')
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow ">
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                </button>
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <figure class="mr-3 img-profile rounded-circle avatar font-weight-bold" data-initial="{{ strtoupper(Auth::user()->email[0]) }}"></figure>
+                                <span class="mr-3 d-none d-lg-inline" style="color:#2E2A61;font-weight:bold;font-size:18px">{{ Auth::user()->email }}</span>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{ route('logoutadmin') }}" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                @yield('content')
+
+                </div>
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- /.container-fluid -->
+            <!-- End of Main Content -->
 
-        </div>
-        <!-- End of Main Content -->
+            <!-- Footer -->
+            <!-- End of Footer -->
 
-        <!-- Footer -->
-        <!-- End of Footer -->
+            </div>
+            <!-- End of Content Wrapper -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+
+
+        @else
+            {{-- Tampilkan konten khusus petugas --}}
+            
+            <!-- Nav Item - Management User -->
+            {{-- <li class="nav-item">
+                <a class="nav-link {{ $title==='Management'? 'active' : '' }}" href="{{ route('admin.manage') }}">
+                <i class="fas fa-fw fa-user-circle {{ $title==='Management'? 'active' : '' }}"></i>
+                    <span>Management User</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed {{ ($title==='Menu'||$title==='Publikasi')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#MobilecollapsePages" aria-expanded="false" aria-controls="MobilecollapsePages">
+                    <i class="fas fa-fw fa-mobile"></i>
+                    <span>Mobile</span>
+                </a>
+                <div id="MobilecollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <style>
+                            .collapse-item.active {
+                            color: #3C5C94;
+                            /* background-color: rgba(196, 196, 196, 0.3); */
+                            font-weight: bold;
+                            }
+                            </style>
+                        <a class="collapse-item {{ $title==='Menu'? 'active' : '' }}" href="{{ route('admin.menu') }}">Menu</a>
+                        <a class="collapse-item {{ $title==='Publikasi'? 'active' : '' }}" href="{{ route('admin.publikasi') }}">Publikasi</a>
+                    </div>
+                </div>
+            </li> --}}
+
+            <!-- Nav Item - Pemeriksaan Klinis Virtual-->
+            <li class="nav-item">
+                <a class="nav-link {{ $title==='PKVirtual'? 'active' : '' }}" href="{{ route('admin.PK-pemeriksaan_klinis') }}">
+                <i class="fas fa-fw fa-file-medical"></i>
+                <span>Pemeriksaan Klinis</span></a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed {{ ($title==='PKJasper'||$title==='PKKurir')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#JPPcollapsePages" aria-expanded="false" aria-controls="JPPcollapsePages">
+                    <i class="fas fa-fw fa-shipping-fast"></i>
+                    <span>Management Jasper</span>
+                </a>
+                <div id="JPPcollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <style>
+                            .collapse-item.active {
+                            color: #3C5C94;
+                            /* background-color: rgba(196, 196, 196, 0.3); */
+                            font-weight: bold;
+                            }
+                            </style>
+                        <a class="collapse-item {{ $title==='PKJasper'? 'active' : '' }}" href="{{ route('admin.PK-jasper_management') }}">Konter Jasa Pengiriman</a>
+                        <a class="collapse-item {{ $title==='PKKurir'? 'active' : '' }}" href="{{ route('admin.PK-kurir_management') }}">Jenis Kurir</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - PPK EKSPOR -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed {{ ($title==='Stuffing'||$title==='Master Dokumen Trader' || $title==='Kategori Dokumen' || $title==='Master Subform'|| $title==='Organoleptik')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-map-signs"></i>
+                        <span>Ekspor</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <style>
+                                .collapse-item.active {
+                                color: #3C5C94;
+                                /* background-color: rgba(196, 196, 196, 0.3); */
+                                font-weight: bold;
+                                }
+                                </style>
+                            <h6 class="collapse-header">Bagian Ekspor:</h6>
+                            <a class="collapse-item {{ $title==='Stuffing'? 'active' : '' }}" href="{{route('admin.stuffing')}}">Stuffing</a>
+                            {{-- <a class="collapse-item {{ $title==='Master Dokumen Trader'? 'active' : '' }}" href="{{route('admin.master_dokumen_trader')}}">Master Dokumen Trader</a>
+                            <a class="collapse-item {{ $title==='Kategori Dokumen'? 'active' : '' }}" href="{{route('admin.kategori_dokumen')}}">Kategori Dokumen</a>
+                            <a class="collapse-item {{ $title==='Master Subform'? 'active' : '' }}" href="{{route('admin.master_subform')}}">Master Subform</a> --}}
+                            <a class="collapse-item {{ $title==='Organoleptik'? 'active' : '' }}" href="{{route('admin.organoleptik')}}">Organoleptik</a>
+                        </div>
+                    </div>
+            </li>
+
+            {{-- <li class="nav-item">
+                    <a class="nav-link collapsed {{ ($title==='Chatbot Command'||$title==='Chatbot Admin')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#chatbotCollapsePages" aria-expanded="false" aria-controls="chatbotCollapsePages">
+                        <i class="fas fa-fw fa-robot"></i>
+                        <span>Chatbot</span>
+                    </a>
+                    <div id="chatbotCollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <style>
+                                .collapse-item.active {
+                                color: #3C5C94;
+                                /* background-color: rgba(196, 196, 196, 0.3); */
+                                font-weight: bold;
+                                }
+                                </style>
+                            <h6 class="collapse-header">Pengelolaan Chatbot:</h6>
+                            <a class="collapse-item {{ $title==='Chatbot Command'? 'active' : '' }}" href="{{route('admin.tabelCommand')}}">Command Chatbot</a>
+                            <a class="collapse-item {{ $title==='Chatbot Admin'? 'active' : '' }}" href="{{route('admin.tabelDaftarAdmin')}}">Admin Chatbot</a>
+                            
+                        </div>
+                    </div>
+            </li> --}}
+
+
+            {{-- <li class="nav-item">
+                <a class="nav-link collapsed {{ ($title==='ActivityLog'||$title==='ActivityLogTraders')? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#LogCollapsePages" aria-expanded="false" aria-controls="LogCollapsePages">
+                    <i class="fas fa-fw fa-eye"></i>
+                    <span>Activity Logs</span>
+                </a>
+                <div id="LogCollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <style>
+                            .collapse-item.active {
+                            color: #3C5C94;
+                            /* background-color: rgba(196, 196, 196, 0.3); */
+                            font-weight: bold;
+                            }
+                            </style>
+                        <h6 class="collapse-header">Pilih Activity Logs:</h6>
+                        <a class="collapse-item {{ $title==='ActivityLog'? 'active' : '' }}" href="{{route('admin.log')}}">Activity Log Admin</a>
+                        <a class="collapse-item {{ $title==='ActivityLogTraders'? 'active' : '' }}" href="{{route('admin.logTraders')}}">Activity Log Traders</a>
+                        
+                    </div>
+                </div>
+            </li> --}}
+            <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+            </ul>
+            <!-- End of Sidebar -->
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow ">
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                </button>
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <figure class="mr-3 img-profile rounded-circle avatar font-weight-bold" data-initial="{{ strtoupper(Auth::user()->email[0]) }}"></figure>
+                                <span class="mr-3 d-none d-lg-inline" style="color:#2E2A61;font-weight:bold;font-size:18px">{{ Auth::user()->email }}</span>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{ route('logoutadmin') }}" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                @yield('content')
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+        @endif
+
+        
 
 </div>
 

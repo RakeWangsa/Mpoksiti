@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\activity_log;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
+
 
 class AdminController extends Controller
 {
@@ -18,6 +20,8 @@ class AdminController extends Controller
     //Method Untuk Pemanggilan Halaman Management User
     public function manage()
     {
+        // $user = Session::get('role');
+        // dd($user);
         $manages = new ManagementUserController();
         return view('admin.manage', [
             "title" => "Management",

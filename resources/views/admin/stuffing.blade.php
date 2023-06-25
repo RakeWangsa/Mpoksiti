@@ -198,7 +198,18 @@
                   </div>
 
                   <!-- Revisi Jadwal Stuffing -->
-                  <a style="margin: 0 3px" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#Revisi{{$ppk->id_ppk}}">Revisi Jadwal</a>
+                  @php
+                      $role = session('role');
+                  @endphp
+
+                  
+
+                  @if ($role === 'Admin')
+                    <a style="margin: 0 3px" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#Revisi{{$ppk->id_ppk}}">Revisi Jadwal</a>
+                  @else
+                    <a style="margin: 0 3px" class="btn btn-sm btn-primary" data-toggle="modal" onclick="alert('Anda tidak memiliki izin untuk melakukan revisi jadwal.');">Revisi Jadwal</a>
+                  @endif
+
                   <div class="modal fade" id="Revisi{{$ppk->id_ppk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                       <div class="modal-content">

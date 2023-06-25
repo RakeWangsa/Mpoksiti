@@ -46,6 +46,9 @@
                                             Login
                                         </button>
                                     </div>
+                                    <div class="form-group">
+                                        <a class="btn btn-primary btn-admin btn-block" href="/login">Trader</a>
+                                    </div>
                                 </form>
 
                                 @if (Route::has('password.request'))

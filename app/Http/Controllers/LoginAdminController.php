@@ -6,6 +6,8 @@ use App\Models\activity_log;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 //use App\Http\Traits\GlobalTrait;
 use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
@@ -47,7 +49,17 @@ class LoginAdminController extends Controller
                 'lokasi' => $checkLocation->city,
                 'email' => $request->email
             ]);
-            return redirect()->intended(route('admin.manage'));
+            $role = DB::table('admins')
+            ->where('email', $request->email)
+            ->pluck('jenis_admin')
+            ->first();
+            Session::put('role', $role);
+            if($role=='Admin'){
+                return redirect()->intended(route('admin.manage'));
+            }else{
+                return redirect()->intended(route('admin.PK-pemeriksaan_klinis'));
+            }
+            
         }
         return back()->with('error', 'Email atau Password Salah!');
     }
