@@ -173,7 +173,7 @@
                             }
                             </style>
                         <h6 class="collapse-header">Pilih Activity Logs:</h6>
-                        <a class="collapse-item {{ $title==='ActivityLog'? 'active' : '' }}" href="{{route('admin.log')}}">Activity Log Admin</a>
+                        <a class="collapse-item {{ $title==='ActivityLog'? 'active' : '' }}" href="{{route('admin.log')}}">Activity Log <br>Admin & Petugas</a>
                         <a class="collapse-item {{ $title==='ActivityLogTraders'? 'active' : '' }}" href="{{route('admin.logTraders')}}">Activity Log Traders</a>
                         
                     </div>

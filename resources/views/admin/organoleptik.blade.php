@@ -85,19 +85,35 @@
       </div>
       @endif
 
-      <div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+      @php
+          $role = session('role');
+      @endphp
+
+                  
+
+      @if ($role === 'Admin')
+        <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Edit Form
+          </a>  
+          <ul class="dropdown-menu">
+            @if(isset($jenisform))
+              @foreach($jenisform as $jnsform)
+              <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>$jnsform->jenis])}}">{{ $jnsform->jenis }}</a></li>
+              @endforeach
+            @endif
+            <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'baru'])}}">Tambah Jenis Baru</a></li>
+          </ul>
+        </div>
+      @else
+        <a class="btn btn-secondary dropdown-toggle" style="background-color:#104E8B" role="button" aria-expanded="false" onclick="alert('Anda tidak memiliki izin untuk mengelola form penilaian organoleptik.');">
           Edit Form
         </a>  
-        <ul class="dropdown-menu">
-          @if(isset($jenisform))
-            @foreach($jenisform as $jnsform)
-            <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>$jnsform->jenis])}}">{{ $jnsform->jenis }}</a></li>
-            @endforeach
-          @endif
-          <li><a class="dropdown-item" href="{{route('admin.editOrganoleptik', ['jenis'=>'baru'])}}">Tambah Jenis Baru</a></li>
-        </ul>
-      </div>
+      @endif
+
+
+      
 
     </div>
     
@@ -212,4 +228,3 @@
   });
 </script>
 @endpush
-

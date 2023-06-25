@@ -57,6 +57,7 @@ class LoginAdminController extends Controller
             if($role=='Admin'){
                 return redirect()->intended(route('admin.manage'));
             }else{
+                Session::put('email', $request->email);
                 return redirect()->intended(route('admin.PK-pemeriksaan_klinis'));
             }
             

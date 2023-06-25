@@ -32,6 +32,11 @@
           </form>
         </div>
         <div class="table-responsive">
+
+          @php
+            $role = session('role');
+          @endphp
+
           <table class="table table-striped" id="tablePpk">
             <thead>
               <tr>
@@ -66,7 +71,12 @@
                 <td style="font-weight: bold">{{ ucfirst($ppk->status)}}</td>
                 <td>
                   @if ($ppk->status == "verifikasi")
-                  <a style="margin: 0 3px" class="btn btn-sm btn-primary" href="{{route('admin.document_stuffing', [$ppk->id_ppk])}}">Dokumen</a>
+                    @if ($role === 'Admin')
+                      <a style="margin: 0 3px" class="btn btn-sm btn-primary" href="{{route('admin.document_stuffing', [$ppk->id_ppk])}}">Dokumen</a>
+                    @else
+                      <a style="margin: 0 3px" class="btn btn-sm btn-primary" onclick="alert('Anda tidak memiliki izin untuk melakukan revisi jadwal.');">Dokumen</a>
+                    @endif
+                  
                   @endif
                   @if ($ppk->status == "Menunggu")
                   <a style="margin: 0 3px" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#declineModal{{$ppk->id_ppk}}">Tidak Setuju</a>
@@ -198,12 +208,6 @@
                   </div>
 
                   <!-- Revisi Jadwal Stuffing -->
-                  @php
-                      $role = session('role');
-                  @endphp
-
-                  
-
                   @if ($role === 'Admin')
                     <a style="margin: 0 3px" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#Revisi{{$ppk->id_ppk}}">Revisi Jadwal</a>
                   @else
